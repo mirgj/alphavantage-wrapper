@@ -1,0 +1,65 @@
+{
+  "name": "alphavantage-wrapper",
+  "version": "0.1.0",
+  "description": "Wrapper around alphavantage API",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src/*",
+    "lint:fix": "eslint src/* --fix",
+    "build": "./node_modules/.bin/babel src --out-dir lib",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirgj/alphavantage-wrapper.git"
+  },
+  "keywords": [
+    "alphavantage",
+    "API",
+    "wrapper",
+    "stocks",
+    "crypto",
+    "market",
+    "intraday",
+    "forex",
+    "sector",
+    "performance"
+  ],
+  "author": "mirgj <mirgj@outlook.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mirgj/alphavantage-wrapper/issues"
+  },
+  "homepage": "https://github.com/mirgj/alphavantage-wrapper#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.1.2",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,scss,yaml,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
