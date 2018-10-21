@@ -1,4 +1,3 @@
 {
-  "presets": ["@babel/preset-env"],
-  "ignore": ["**/*.spec.js", "tests/*.js"]
+  "presets": ["@babel/preset-env"]
 }
