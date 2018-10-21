@@ -26,8 +26,7 @@ describe('# parser', () => {
     });
   });
 
-  it.each(
-    [null, undefined, ''],
+  it.each([null, undefined, ''])(
     'should throw an exception if apiKey is %s',
     key => {
       const input = {
@@ -37,13 +36,9 @@ describe('# parser', () => {
     },
   );
 
-  it.each(
-    [null, undefined, 'not-an-object'],
+  it.each([null, undefined, 'not-an-object'])(
     'should throw an exception if config is %s',
-    key => {
-      const input = {
-        apiKey: key,
-      };
+    input => {
       expect(() => parser(input)).toThrowError(
         'config is required and has to be an object',
       );
