@@ -1,10 +1,11 @@
 {
   "env": {
+    "jest/globals": true,
     "es6": true,
     "node": true
   },
   "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "jest"],
   "rules": {
     "prettier/prettier": "error"
   }
