@@ -1,3 +1,5 @@
+import * as constants from '../constants/index';
+
 const mappings = {
   exchangeRateMapping: {
     toObj: {
@@ -13,6 +15,7 @@ const mappings = {
       lastRefresh: '',
       timeZone: '',
     },
+    validity: 'Realtime Currency Exchange Rate',
     propertyMappings: [
       {
         from: 'Realtime Currency Exchange Rate|1. From_Currency Code',
@@ -71,19 +74,29 @@ const mapper = (obj, toObj, mappingConfig) => {
   return toObj;
 };
 
-export const exchangeRate = response => {
-  const res = {
-    raw: {
-      ...response,
-    },
-    ...mapper(
-      response,
-      mappings.exchangeRateMapping.toObj,
-      mappings.exchangeRateMapping.propertyMappings,
-    ),
-  };
-
-  return res;
+const loadProcessConfig = processType => {
+  switch (processType) {
+    case constants.CURRENCY_EXCHANGE_RATE:
+      return mappings.exchangeRateMapping;
+    default:
+      throw new Error(`Configuration not found for process ${processType}`);
+  }
 };
 
-export const x = 1;
+export default (config, response, processType) => {
+  const injectRawResponse = config.injectRawResponse || false;
+  const processConfig = loadProcessConfig(processType);
+
+  if (response[processConfig.validity]) {
+    const res = {
+      ...mapper(response, processConfig.toObj, processConfig.propertyMappings),
+    };
+
+    if (injectRawResponse) {
+      res.raw = response;
+    }
+    return res;
+  }
+
+  return response;
+};
