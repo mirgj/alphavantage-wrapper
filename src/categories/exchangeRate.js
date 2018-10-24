@@ -5,8 +5,8 @@ import * as constants from '../constants/index';
 const exchange = config => async (from, to) => {
   const appendQuery = querystring.stringify({
     function: constants.CURRENCY_EXCHANGE_RATE,
-    from,
-    to,
+    from_currency: from,
+    to_currency: to,
   });
 
   const result = await requestCreator(
