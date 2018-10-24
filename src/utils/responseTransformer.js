@@ -28,45 +28,49 @@ const mapper = (obj, toObj, mappingConfig) => {
   return toObj;
 };
 
-const loadProcessConfig = async processType => {
+const loadFunctionConfig = async functionType => {
   const fileToLoad = path.resolve(
     __dirname,
-    `../config/process/${processType}.json`,
+    `../config/functions/${functionType}.json`,
   );
 
   return new Promise((resolve, reject) => {
-    if (!mappingsCache[processType]) {
+    if (!mappingsCache[functionType]) {
       fs.readFile(fileToLoad, 'utf8', (err, result) => {
         if (err) {
           reject(
-            new Error(`Configuration not found for process ${processType}`),
+            new Error(`Configuration not found for function ${functionType}`),
           );
         }
 
         try {
-          mappingsCache[processType] = JSON.parse(result);
-          resolve(mappingsCache[processType]);
+          mappingsCache[functionType] = JSON.parse(result);
+          resolve(mappingsCache[functionType]);
         } catch (e) {
           reject(
             new Error(
-              `Error parsing the configuration for process ${processType}`,
+              `Error parsing the configuration for function ${functionType}`,
             ),
           );
         }
       });
     } else {
-      resolve(mappingsCache[processType]);
+      resolve(mappingsCache[functionType]);
     }
   });
 };
 
-export default async (config, response, processType) => {
+export default async (config, response, functionType) => {
   const injectRawResponse = !!config.injectRawResponse || false;
-  const processConfig = await loadProcessConfig(processType);
+  const functionConfig = await loadFunctionConfig(functionType);
 
-  if (response[processConfig.validity]) {
+  if (response[functionConfig.validity]) {
     const res = {
-      ...mapper(response, processConfig.toObj, processConfig.propertyMappings),
+      ...mapper(
+        response,
+        functionConfig.toObj,
+        functionConfig.propertyMappings,
+      ),
     };
 
     if (injectRawResponse) {
