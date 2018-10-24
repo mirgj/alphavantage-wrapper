@@ -84,7 +84,7 @@ const loadProcessConfig = processType => {
 };
 
 export default (config, response, processType) => {
-  const injectRawResponse = config.injectRawResponse || false;
+  const injectRawResponse = !!config.injectRawResponse || false;
   const processConfig = loadProcessConfig(processType);
 
   if (response[processConfig.validity]) {
