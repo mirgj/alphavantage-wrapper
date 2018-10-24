@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint src/*",
     "lint:fix": "eslint src/* --fix",
-    "build": "rm -rf lib && ./node_modules/.bin/babel src --out-dir lib  --ignore 'src/**/*.spec.js'",
+    "build": "rm -rf lib && ./node_modules/.bin/babel src --out-dir lib --copy-files --ignore 'src/**/*.spec.js'",
     "prepare": "npm run build",
     "test": "jest"
   },
