@@ -1,53 +1,7 @@
-import * as constants from '../constants/index';
+import fs from 'fs';
+import path from 'path';
 
-const mappings = {
-  exchangeRateMapping: {
-    toObj: {
-      from: {
-        code: '',
-        name: '',
-      },
-      to: {
-        code: '',
-        name: '',
-      },
-      exchangeRate: '',
-      lastRefresh: '',
-      timeZone: '',
-    },
-    validity: 'Realtime Currency Exchange Rate',
-    propertyMappings: [
-      {
-        from: 'Realtime Currency Exchange Rate|1. From_Currency Code',
-        to: 'from|code',
-      },
-      {
-        from: 'Realtime Currency Exchange Rate|2. From_Currency Name',
-        to: 'from|name',
-      },
-      {
-        from: 'Realtime Currency Exchange Rate|3. To_Currency Code',
-        to: 'to|code',
-      },
-      {
-        from: 'Realtime Currency Exchange Rate|4. To_Currency Name',
-        to: 'to|name',
-      },
-      {
-        from: 'Realtime Currency Exchange Rate|5. Exchange Rate',
-        to: 'exchangeRate',
-      },
-      {
-        from: 'Realtime Currency Exchange Rate|6. Last Refreshed',
-        to: 'lastRefresh',
-      },
-      {
-        from: 'Realtime Currency Exchange Rate|7. Time Zone',
-        to: 'timeZone',
-      },
-    ],
-  },
-};
+const mappingsCache = {};
 
 const mapper = (obj, toObj, mappingConfig) => {
   mappingConfig.forEach(q => {
@@ -74,18 +28,41 @@ const mapper = (obj, toObj, mappingConfig) => {
   return toObj;
 };
 
-const loadProcessConfig = processType => {
-  switch (processType) {
-    case constants.CURRENCY_EXCHANGE_RATE:
-      return mappings.exchangeRateMapping;
-    default:
-      throw new Error(`Configuration not found for process ${processType}`);
-  }
+const loadProcessConfig = async processType => {
+  const fileToLoad = path.resolve(
+    __dirname,
+    `../config/process/${processType}.json`,
+  );
+
+  return new Promise((resolve, reject) => {
+    if (!mappingsCache[processType]) {
+      fs.readFile(fileToLoad, 'utf8', (err, result) => {
+        if (err) {
+          reject(
+            new Error(`Configuration not found for process ${processType}`),
+          );
+        }
+
+        try {
+          mappingsCache[processType] = JSON.parse(result);
+          resolve(mappingsCache[processType]);
+        } catch (e) {
+          reject(
+            new Error(
+              `Error parsing the configuration for process ${processType}`,
+            ),
+          );
+        }
+      });
+    } else {
+      resolve(mappingsCache[processType]);
+    }
+  });
 };
 
-export default (config, response, processType) => {
+export default async (config, response, processType) => {
   const injectRawResponse = !!config.injectRawResponse || false;
-  const processConfig = loadProcessConfig(processType);
+  const processConfig = await loadProcessConfig(processType);
 
   if (response[processConfig.validity]) {
     const res = {

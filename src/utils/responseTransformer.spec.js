@@ -3,7 +3,7 @@ import responseTransformer from './responseTransformer';
 
 describe('# responseTransformer', () => {
   describe('## CURRENCY_EXCHANGE_RATE', () => {
-    it('it should transform the response into the expected format', () => {
+    it('it should transform the response into the expected format', async () => {
       const response = {
         'Realtime Currency Exchange Rate': {
           '1. From_Currency Code': 'BTC',
@@ -16,7 +16,7 @@ describe('# responseTransformer', () => {
         },
       };
 
-      const res = responseTransformer(
+      const res = await responseTransformer(
         {},
         response,
         constants.CURRENCY_EXCHANGE_RATE,
@@ -37,7 +37,7 @@ describe('# responseTransformer', () => {
       });
     });
 
-    it('it should transform the response into the expected format and apprend the raw response', () => {
+    it('it should transform the response into the expected format and apprend the raw response', async () => {
       const response = {
         'Realtime Currency Exchange Rate': {
           '1. From_Currency Code': 'BTC',
@@ -50,7 +50,7 @@ describe('# responseTransformer', () => {
         },
       };
 
-      const res = responseTransformer(
+      const res = await responseTransformer(
         { injectRawResponse: true },
         response,
         constants.CURRENCY_EXCHANGE_RATE,
@@ -72,12 +72,12 @@ describe('# responseTransformer', () => {
       });
     });
 
-    it('it should not transform the response in case is not in the valid format', () => {
+    it('it should not transform the response in case is not in the valid format', async () => {
       const response = {
         invalid: 'response',
       };
 
-      const res = responseTransformer(
+      const res = await responseTransformer(
         { injectRawResponse: true },
         response,
         constants.CURRENCY_EXCHANGE_RATE,
