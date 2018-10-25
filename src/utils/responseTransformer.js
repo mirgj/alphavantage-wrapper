@@ -33,10 +33,23 @@ const mapper = (obj, toObj, mappingConfig) => {
     const dynamicFields = getDynamicKeys(obj, fromArray);
 
     dynamicFields.forEach(dynamic => {
+      let formattedValue = null;
       fromArray.forEach(frm => {
         if (dynamic && frm === constants.DYNAMIC) {
           // eslint-disable-next-line
           frm = dynamic;
+        }
+
+        if (q.format && frm.indexOf(constants.DYNAMIC_FORMAT) > -1) {
+          const regex = new RegExp(q.format.regex, 'i');
+          const regRes = regex.exec(frm);
+
+          // eslint-disable-next-line
+          frm = frm.replace(
+            constants.DYNAMIC_FORMAT,
+            regRes.groups[q.format.group],
+          );
+          formattedValue = regRes.groups[q.format.group];
         }
 
         objClone = objClone[frm];
@@ -49,10 +62,17 @@ const mapper = (obj, toObj, mappingConfig) => {
           t = dynamic;
         }
 
+        if (t === constants.DYNAMIC_FORMAT) {
+          // eslint-disable-next-line
+          t = formattedValue;
+        }
+
         if (idx === toArray.length - 1) {
-          if (q.converter)
+          if (q.converter) {
             toObjRef[t] = converterFactory(currentElementValue, q.converter);
-          else toObjRef[t] = currentElementValue;
+          } else {
+            toObjRef[t] = currentElementValue;
+          }
         } else {
           toObjRef = toObj[t];
         }
