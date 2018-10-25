@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import converterFactory from '../converters';
 
 const mappingsCache = {};
 
@@ -18,7 +19,9 @@ const mapper = (obj, toObj, mappingConfig) => {
 
     toArray.forEach((t, idx) => {
       if (idx === toArray.length - 1) {
-        toObjRef[t] = currentElementValue;
+        if (q.converter)
+          toObjRef[t] = converterFactory(currentElementValue, q.converter);
+        else toObjRef[t] = currentElementValue;
       } else {
         toObjRef = toObj[t];
       }
