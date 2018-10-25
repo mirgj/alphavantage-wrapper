@@ -1,30 +1,62 @@
 import fs from 'fs';
 import path from 'path';
 import converterFactory from '../converters';
+import * as constants from '../constants';
 
 const mappingsCache = {};
 
+const getDynamicKeys = (obj, fromArray) => {
+  let objClone = obj;
+  let retValue = [null];
+
+  if (fromArray.includes(constants.DYNAMIC)) {
+    fromArray.forEach(frm => {
+      if (frm === constants.DYNAMIC) {
+        retValue = Object.keys(objClone);
+        return;
+      }
+
+      objClone = objClone[frm];
+    });
+  }
+
+  return retValue;
+};
+
 const mapper = (obj, toObj, mappingConfig) => {
   mappingConfig.forEach(q => {
-    let objClone = { ...obj };
+    let objClone = obj;
     let toObjRef = toObj;
     const fromArray = q.from.split('|');
     const toArray = q.to.split('|');
     let currentElementValue;
+    const dynamicFields = getDynamicKeys(obj, fromArray);
 
-    fromArray.forEach(frm => {
-      objClone = objClone[frm];
-      currentElementValue = objClone;
-    });
+    dynamicFields.forEach(dynamic => {
+      fromArray.forEach(frm => {
+        if (dynamic && frm === constants.DYNAMIC) {
+          // eslint-disable-next-line
+          frm = dynamic;
+        }
 
-    toArray.forEach((t, idx) => {
-      if (idx === toArray.length - 1) {
-        if (q.converter)
-          toObjRef[t] = converterFactory(currentElementValue, q.converter);
-        else toObjRef[t] = currentElementValue;
-      } else {
-        toObjRef = toObj[t];
-      }
+        objClone = objClone[frm];
+        currentElementValue = objClone;
+      });
+
+      toArray.forEach((t, idx) => {
+        if (dynamic && t === constants.DYNAMIC) {
+          // eslint-disable-next-line
+          t = dynamic;
+        }
+
+        if (idx === toArray.length - 1) {
+          if (q.converter)
+            toObjRef[t] = converterFactory(currentElementValue, q.converter);
+          else toObjRef[t] = currentElementValue;
+        } else {
+          toObjRef = toObj[t];
+        }
+      });
     });
   });
 
