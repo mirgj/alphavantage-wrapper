@@ -11,7 +11,7 @@ export default config => {
     currency: {
       crypto: crypto(parsedConfig),
       forex: forex(parsedConfig),
-      exchangeRate: exchangeRate(config),
+      exchangeRate: exchangeRate(parsedConfig),
     },
   };
 };
