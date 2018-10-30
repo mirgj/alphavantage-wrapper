@@ -1,0 +1,129 @@
+{
+  "validity": "Meta Data",
+  "propertyMappings": [
+    {
+      "from": "Meta Data|1. Information",
+      "to": "description"
+    },
+    {
+      "from": "Meta Data|2. Digital Currency Code",
+      "to": "currency|code"
+    },
+    {
+      "from": "Meta Data|3. Digital Currency Name",
+      "to": "currency|name"
+    },
+    {
+      "from": "Meta Data|4. Market Code",
+      "to": "exchange|code"
+    },
+    {
+      "from": "Meta Data|5. Market Name",
+      "to": "exchange|name"
+    },
+    {
+      "from": "Meta Data|6. Last Refreshed",
+      "to": "lastRefreshed",
+      "converter": {
+        "type": "replace",
+        "context": {
+          "from": "(end of day)",
+          "to": "23:59:59"
+        }
+      }
+    },
+    {
+      "from": "Meta Data|7. Time Zone",
+      "to": "timeZone"
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|1a. open ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|open|[dynamicFormat]",
+      "format": {
+        "keyIndex": 0,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|1b. open ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|open|[dynamicFormat]",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|2a. high ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|high|[dynamicFormat]",
+      "format": {
+        "keyIndex": 2,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|2b. high ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|high|[dynamicFormat]",
+      "format": {
+        "keyIndex": 3,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|3a. low ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|low|[dynamicFormat]",
+      "format": {
+        "keyIndex": 4,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|3b. low ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|low|[dynamicFormat]",
+      "format": {
+        "keyIndex": 5,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|4a. close ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|close|[dynamicFormat]",
+      "format": {
+        "keyIndex": 6,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|4b. close ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|close|[dynamicFormat]",
+      "format": {
+        "keyIndex": 7,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|5. volume",
+      "to": "timeSeries|[dynamic]|volume",
+      "format": {
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series (Digital Currency Monthly)|[dynamic]|6. market cap ([dynamicFormat])",
+      "to": "timeSeries|[dynamic]|marketCap|[dynamicFormat]",
+      "format": {
+        "keyIndex": 9,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    }
+  ]
+}
