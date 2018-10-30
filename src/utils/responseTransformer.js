@@ -42,11 +42,11 @@ const mapper = (obj, mappingConfig) => {
   mappingConfig.forEach(q => {
     const fromArray = q.from.split('|');
     const dynamicFields = getDynamicKeys(obj, fromArray);
-    let toPath = q.to;
-    let currentElementValue;
-    let objClone = obj;
 
     dynamicFields.forEach(dynamic => {
+      let currentElementValue;
+      let toPath = q.to;
+      let objClone = obj;
       let formattedValue = null;
       fromArray.forEach(frm => {
         if (dynamic && frm === constants.DYNAMIC) {
