@@ -23,14 +23,28 @@ const getDynamicKeys = (obj, fromArray) => {
   return retValue;
 };
 
-const mapper = (obj, toObj, mappingConfig) => {
+const assign = (obj, keyPath, value) => {
+  const lastKeyIndex = keyPath.length - 1;
+  // eslint-disable-next-line
+  for (let i = 0; i < lastKeyIndex; ++i) {
+    const key = keyPath[i];
+    // eslint-disable-next-line
+    if (!(key in obj)) obj[key] = {};
+    // eslint-disable-next-line
+    obj = obj[key];
+  }
+  // eslint-disable-next-line
+  obj[keyPath[lastKeyIndex]] = value;
+};
+
+const mapper = (obj, mappingConfig) => {
+  const result = {};
   mappingConfig.forEach(q => {
-    let objClone = obj;
-    let toObjRef = toObj;
     const fromArray = q.from.split('|');
-    const toArray = q.to.split('|');
-    let currentElementValue;
     const dynamicFields = getDynamicKeys(obj, fromArray);
+    let toPath = q.to;
+    let currentElementValue;
+    let objClone = obj;
 
     dynamicFields.forEach(dynamic => {
       let formattedValue = null;
@@ -41,46 +55,34 @@ const mapper = (obj, toObj, mappingConfig) => {
         }
 
         if (q.format && frm.indexOf(constants.DYNAMIC_FORMAT) > -1) {
+          const keys = Object.keys(objClone);
           const regex = new RegExp(q.format.regex, 'i');
-          const regRes = regex.exec(frm);
+          const regRes = regex.exec(keys[q.format.keyIndex]);
 
           // eslint-disable-next-line
-          frm = frm.replace(
-            constants.DYNAMIC_FORMAT,
-            regRes.groups[q.format.group],
-          );
-          formattedValue = regRes.groups[q.format.group];
+          frm = frm.replace(constants.DYNAMIC_FORMAT, regRes[q.format.group]);
+          formattedValue = regRes[q.format.group];
         }
 
         objClone = objClone[frm];
         currentElementValue = objClone;
       });
 
-      toArray.forEach((t, idx) => {
-        if (dynamic && t === constants.DYNAMIC) {
-          // eslint-disable-next-line
-          t = dynamic;
-        }
+      if (q.converter) {
+        currentElementValue = converterFactory(
+          currentElementValue,
+          q.converter,
+        );
+      }
 
-        if (t === constants.DYNAMIC_FORMAT) {
-          // eslint-disable-next-line
-          t = formattedValue;
-        }
+      toPath = toPath.replace(constants.DYNAMIC, dynamic);
+      toPath = toPath.replace(constants.DYNAMIC_FORMAT, formattedValue);
 
-        if (idx === toArray.length - 1) {
-          if (q.converter) {
-            toObjRef[t] = converterFactory(currentElementValue, q.converter);
-          } else {
-            toObjRef[t] = currentElementValue;
-          }
-        } else {
-          toObjRef = toObj[t];
-        }
-      });
+      assign(result, toPath.split('|'), currentElementValue);
     });
   });
 
-  return toObj;
+  return result;
 };
 
 const loadFunctionConfig = async functionType => {
@@ -121,11 +123,7 @@ export default async (config, response, functionType) => {
 
   if (response[functionConfig.validity]) {
     const res = {
-      ...mapper(
-        response,
-        functionConfig.toObj,
-        functionConfig.propertyMappings,
-      ),
+      ...mapper(response, functionConfig.propertyMappings),
     };
 
     if (injectRawResponse) {
