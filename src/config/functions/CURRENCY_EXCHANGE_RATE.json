@@ -1,17 +1,4 @@
 {
-  "toObj": {
-    "from": {
-      "code": "",
-      "name": ""
-    },
-    "to": {
-      "code": "",
-      "name": ""
-    },
-    "exchangeRate": "",
-    "lastRefresh": "",
-    "timeZone": ""
-  },
   "validity": "Realtime Currency Exchange Rate",
   "propertyMappings": [
     {
