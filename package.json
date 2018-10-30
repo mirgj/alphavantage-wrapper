@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Wrapper around alphavantage API",
   "main": "lib/index.js",
+  "types": "types/index.d.ts",
   "scripts": {
     "lint": "eslint src/*",
     "lint:fix": "eslint src/* --fix",
