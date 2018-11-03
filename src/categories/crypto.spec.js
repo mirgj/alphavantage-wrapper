@@ -21,9 +21,9 @@ describe('# crypto', () => {
     querystring.stringify.mockClear();
   });
 
-  it('should call the daily data in case the frequency is not provided', async () => {
+  it('should call the daily data correctly', async () => {
     const fn = crypto(config);
-    const result = await fn('BTC', 'EUR');
+    const result = await fn.daily('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
     expect(querystring.stringify).toBeCalledWith({
@@ -38,43 +38,9 @@ describe('# crypto', () => {
     );
   });
 
-  it('should call the daily data in case the daily frequency is provided', async () => {
+  it('should call the weekly data correctly', async () => {
     const fn = crypto(config);
-    const result = await fn('BTC', 'EUR', 'daily');
-
-    expect(result).toEqual('an-output');
-    expect(querystring.stringify).toBeCalledWith({
-      function: constants.DIGITAL_CURRENCY_DAILY,
-      symbol: 'BTC',
-      market: 'EUR',
-    });
-    expect(requestCreator).toBeCalledWith(
-      config,
-      `${config.url}a-query`,
-      constants.DIGITAL_CURRENCY_DAILY,
-    );
-  });
-
-  it('should call the monthly data in case the monthly frequency is provided', async () => {
-    const fn = crypto(config);
-    const result = await fn('BTC', 'EUR', 'monthly');
-
-    expect(result).toEqual('an-output');
-    expect(querystring.stringify).toBeCalledWith({
-      function: constants.DIGITAL_CURRENCY_MONTHLY,
-      symbol: 'BTC',
-      market: 'EUR',
-    });
-    expect(requestCreator).toBeCalledWith(
-      config,
-      `${config.url}a-query`,
-      constants.DIGITAL_CURRENCY_MONTHLY,
-    );
-  });
-
-  it('should call the weekly data in case the weekly frequency is provided', async () => {
-    const fn = crypto(config);
-    const result = await fn('BTC', 'EUR', 'weekly');
+    const result = await fn.weekly('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
     expect(querystring.stringify).toBeCalledWith({
@@ -86,6 +52,23 @@ describe('# crypto', () => {
       config,
       `${config.url}a-query`,
       constants.DIGITAL_CURRENCY_WEEKLY,
+    );
+  });
+
+  it('should call the monthly data correctly', async () => {
+    const fn = crypto(config);
+    const result = await fn.monthly('BTC', 'EUR');
+
+    expect(result).toEqual('an-output');
+    expect(querystring.stringify).toBeCalledWith({
+      function: constants.DIGITAL_CURRENCY_MONTHLY,
+      symbol: 'BTC',
+      market: 'EUR',
+    });
+    expect(requestCreator).toBeCalledWith(
+      config,
+      `${config.url}a-query`,
+      constants.DIGITAL_CURRENCY_MONTHLY,
     );
   });
 });

@@ -18,33 +18,13 @@ const baseRequest = config => async (symbol, market, funct) => {
   return result;
 };
 
-const digitalCurrency = config => async (symbol, market, frequency) => {
-  let result;
-  switch (frequency) {
-    case 'monthly':
-      result = await baseRequest(config)(
-        symbol,
-        market,
-        constants.DIGITAL_CURRENCY_MONTHLY,
-      );
-      break;
-    case 'weekly':
-      result = await baseRequest(config)(
-        symbol,
-        market,
-        constants.DIGITAL_CURRENCY_WEEKLY,
-      );
-      break;
-    case 'daily':
-    default:
-      result = await baseRequest(config)(
-        symbol,
-        market,
-        constants.DIGITAL_CURRENCY_DAILY,
-      );
-  }
-
-  return result;
-};
+const digitalCurrency = config => ({
+  daily: (symbol, market) =>
+    baseRequest(config)(symbol, market, constants.DIGITAL_CURRENCY_DAILY),
+  weekly: (symbol, market) =>
+    baseRequest(config)(symbol, market, constants.DIGITAL_CURRENCY_WEEKLY),
+  monthly: (symbol, market) =>
+    baseRequest(config)(symbol, market, constants.DIGITAL_CURRENCY_MONTHLY),
+});
 
 export default config => digitalCurrency(config);
