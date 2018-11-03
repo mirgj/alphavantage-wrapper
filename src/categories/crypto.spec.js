@@ -21,6 +21,14 @@ describe('# crypto', () => {
     querystring.stringify.mockClear();
   });
 
+  it('should create the object correctly', () => {
+    const fn = crypto(config);
+
+    expect(fn.daily).toEqual(expect.any(Function));
+    expect(fn.weekly).toEqual(expect.any(Function));
+    expect(fn.monthly).toEqual(expect.any(Function));
+  });
+
   it('should call the daily data correctly', async () => {
     const fn = crypto(config);
     const result = await fn.daily('BTC', 'EUR');
