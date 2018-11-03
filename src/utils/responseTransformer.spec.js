@@ -395,7 +395,7 @@ describe('# responseTransformer', () => {
           },
         },
       };
-      const res = await responseTransformer({}, response, constants.FX_WEEKLY);
+      const res = await responseTransformer({}, response, constants.FX_MONTHLY);
 
       expect(res).toEqual({
         description: 'Forex Monthly Prices (open, high, low, close)',
