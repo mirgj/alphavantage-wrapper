@@ -1,0 +1,69 @@
+{
+  "validity": "Meta Data",
+  "propertyMappings": [
+    {
+      "from": "Meta Data|1. Information",
+      "to": "description"
+    },
+    {
+      "from": "Meta Data|2. From Symbol",
+      "to": "from|code"
+    },
+    {
+      "from": "Meta Data|3. To Symbol",
+      "to": "to|code"
+    },
+    {
+      "from": "Meta Data|4. Last Refreshed",
+      "to": "lastRefreshed"
+    },
+    {
+      "from": "Meta Data|7. Time Zone",
+      "to": "timeZone"
+    },
+    {
+      "from": "Meta Data|5. Interval",
+      "to": "interval"
+    },
+    {
+      "from": "Meta Data|6. Output Size",
+      "to": "outputType"
+    },
+    {
+      "from": "Time Series FX ([dynamicFormat])|[dynamic]|1. open",
+      "to": "timeSeries|[dynamic]|open",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series FX ([dynamicFormat])|[dynamic]|2. high",
+      "to": "timeSeries|[dynamic]|high",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series FX ([dynamicFormat])|[dynamic]|3. low",
+      "to": "timeSeries|[dynamic]|low",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Time Series FX ([dynamicFormat])|[dynamic]|4. close",
+      "to": "timeSeries|[dynamic]|close",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    }
+  ]
+}

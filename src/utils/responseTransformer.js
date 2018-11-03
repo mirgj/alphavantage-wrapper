@@ -5,7 +5,7 @@ import * as constants from '../constants';
 
 const mappingsCache = {};
 
-const getDynamicKeys = (obj, fromArray) => {
+const getDynamicKeys = (obj, fromArray, q) => {
   let objClone = obj;
   let retValue = [null];
 
@@ -14,6 +14,17 @@ const getDynamicKeys = (obj, fromArray) => {
       if (frm === constants.DYNAMIC) {
         retValue = Object.keys(objClone);
         return;
+      }
+
+      if (q.format && frm.indexOf(constants.DYNAMIC_FORMAT) > -1) {
+        const keys = Object.keys(objClone);
+        const regex = new RegExp(q.format.regex, 'i');
+        const regRes = regex.exec(keys[q.format.keyIndex]);
+
+        if (regRes) {
+          // eslint-disable-next-line
+          frm = frm.replace(constants.DYNAMIC_FORMAT, regRes[q.format.group]);
+        }
       }
 
       objClone = objClone[frm];
@@ -41,7 +52,7 @@ const mapper = (obj, mappingConfig) => {
   const result = {};
   mappingConfig.forEach(q => {
     const fromArray = q.from.split('|');
-    const dynamicFields = getDynamicKeys(obj, fromArray);
+    const dynamicFields = getDynamicKeys(obj, fromArray, q);
 
     dynamicFields.forEach(dynamic => {
       let currentElementValue;

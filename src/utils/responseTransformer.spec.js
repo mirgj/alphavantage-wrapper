@@ -194,4 +194,234 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## FX_INTRADAY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'FX Intraday (5min) Time Series',
+          '2. From Symbol': 'EUR',
+          '3. To Symbol': 'USD',
+          '4. Last Refreshed': '2018-11-02 21:15:00',
+          '5. Interval': '5min',
+          '6. Output Size': 'Compact',
+          '7. Time Zone': 'UTC',
+        },
+        'Time Series FX (5min)': {
+          '2018-11-02 21:15:00': {
+            '1. open': '1.1387',
+            '2. high': '1.1387',
+            '3. low': '1.1387',
+            '4. close': '1.1387',
+          },
+          '2018-11-02 21:10:00': {
+            '1. open': '1.1386',
+            '2. high': '1.1386',
+            '3. low': '1.1386',
+            '4. close': '1.1386',
+          },
+        },
+      };
+      const res = await responseTransformer(
+        {},
+        response,
+        constants.FX_INTRADAY,
+      );
+
+      expect(res).toEqual({
+        description: 'FX Intraday (5min) Time Series',
+        from: {
+          code: 'EUR',
+        },
+        to: {
+          code: 'USD',
+        },
+        lastRefreshed: '2018-11-02 21:15:00',
+        timeZone: 'UTC',
+        interval: '5min',
+        outputType: 'Compact',
+        timeSeries: {
+          '2018-11-02 21:15:00': {
+            open: '1.1387',
+            high: '1.1387',
+            low: '1.1387',
+            close: '1.1387',
+          },
+          '2018-11-02 21:10:00': {
+            open: '1.1386',
+            high: '1.1386',
+            low: '1.1386',
+            close: '1.1386',
+          },
+        },
+      });
+    });
+  });
+
+  describe('## FX_DAILY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Forex Daily Prices (open, high, low, close)',
+          '2. From Symbol': 'EUR',
+          '3. To Symbol': 'USD',
+          '4. Output Size': 'Compact',
+          '5. Last Refreshed': '2018-11-03 05:15:00',
+          '6. Time Zone': 'GMT+8',
+        },
+        'Time Series FX (Daily)': {
+          '2018-11-03': {
+            '1. open': '1.1378',
+            '2. high': '1.1400',
+            '3. low': '1.1371',
+            '4. close': '1.1387',
+          },
+          '2018-11-02': {
+            '1. open': '1.1404',
+            '2. high': '1.1456',
+            '3. low': '1.1371',
+            '4. close': '1.1387',
+          },
+        },
+      };
+      const res = await responseTransformer({}, response, constants.FX_DAILY);
+
+      expect(res).toEqual({
+        description: 'Forex Daily Prices (open, high, low, close)',
+        from: {
+          code: 'EUR',
+        },
+        to: {
+          code: 'USD',
+        },
+        lastRefreshed: '2018-11-03 05:15:00',
+        timeZone: 'GMT+8',
+        outputType: 'Compact',
+        timeSeries: {
+          '2018-11-03': {
+            open: '1.1378',
+            high: '1.1400',
+            low: '1.1371',
+            close: '1.1387',
+          },
+          '2018-11-02': {
+            open: '1.1404',
+            high: '1.1456',
+            low: '1.1371',
+            close: '1.1387',
+          },
+        },
+      });
+    });
+  });
+
+  describe('## FX_WEEKLY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Forex Weekly Prices (open, high, low, close)',
+          '2. From Symbol': 'EUR',
+          '3. To Symbol': 'USD',
+          '4. Last Refreshed': '2018-11-03 05:15:00',
+          '5. Time Zone': 'GMT+8',
+        },
+        'Time Series FX (Weekly)': {
+          '2018-11-03': {
+            '1. open': '1.1404',
+            '2. high': '1.1456',
+            '3. low': '1.1300',
+            '4. close': '1.1387',
+          },
+          '2018-10-28': {
+            '1. open': '1.1512',
+            '2. high': '1.1550',
+            '3. low': '1.1334',
+            '4. close': '1.1403',
+          },
+        },
+      };
+      const res = await responseTransformer({}, response, constants.FX_WEEKLY);
+
+      expect(res).toEqual({
+        description: 'Forex Weekly Prices (open, high, low, close)',
+        from: {
+          code: 'EUR',
+        },
+        to: {
+          code: 'USD',
+        },
+        lastRefreshed: '2018-11-03 05:15:00',
+        timeZone: 'GMT+8',
+        timeSeries: {
+          '2018-11-03': {
+            open: '1.1404',
+            high: '1.1456',
+            low: '1.1300',
+            close: '1.1387',
+          },
+          '2018-10-28': {
+            open: '1.1512',
+            high: '1.1550',
+            low: '1.1334',
+            close: '1.1403',
+          },
+        },
+      });
+    });
+  });
+
+  describe('## FX_MONTHLY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Forex Monthly Prices (open, high, low, close)',
+          '2. From Symbol': 'EUR',
+          '3. To Symbol': 'USD',
+          '4. Last Refreshed': '2018-11-03 05:15:00',
+          '5. Time Zone': 'GMT+8',
+        },
+        'Time Series FX (Monthly)': {
+          '2018-11-03': {
+            '1. open': '1.1317',
+            '2. high': '1.1456',
+            '3. low': '1.1311',
+            '4. close': '1.1387',
+          },
+          '2018-10-31': {
+            '1. open': '1.1605',
+            '2. high': '1.1625',
+            '3. low': '1.1300',
+            '4. close': '1.1317',
+          },
+        },
+      };
+      const res = await responseTransformer({}, response, constants.FX_WEEKLY);
+
+      expect(res).toEqual({
+        description: 'Forex Monthly Prices (open, high, low, close)',
+        from: {
+          code: 'EUR',
+        },
+        to: {
+          code: 'USD',
+        },
+        lastRefreshed: '2018-11-03 05:15:00',
+        timeZone: 'GMT+8',
+        timeSeries: {
+          '2018-11-03': {
+            open: '1.1317',
+            high: '1.1456',
+            low: '1.1311',
+            close: '1.1387',
+          },
+          '2018-10-31': {
+            open: '1.1605',
+            high: '1.1625',
+            low: '1.1300',
+            close: '1.1317',
+          },
+        },
+      });
+    });
+  });
 });
