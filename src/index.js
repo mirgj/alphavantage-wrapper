@@ -8,10 +8,8 @@ export default config => {
   parsedConfig.url = `${parsedConfig.baseUrl}?apikey=${parsedConfig.apiKey}&`;
 
   return {
-    currency: {
-      crypto: crypto(parsedConfig),
-      forex: forex(parsedConfig),
-      exchangeRate: exchangeRate(parsedConfig),
-    },
+    crypto: crypto(parsedConfig),
+    forex: forex(parsedConfig),
+    exchangeRate: exchangeRate(parsedConfig),
   };
 };
