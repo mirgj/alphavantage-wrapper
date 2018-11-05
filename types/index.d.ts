@@ -1,10 +1,34 @@
+enum ParseType {
+  NONE = 'none',
+  TRANSFORM = 'transform',
+  CLEAN = 'clean',
+}
+
+enum IntervalType {
+  ONE_MIN = '1min',
+  FIVE_MIN = '5min',
+  FIFTEEN_MIN = '15min',
+  THIRTY_MIN = '30min',
+  SIXTY_MIN = '60min',
+}
+
+enum OutputSizeType {
+  COMPACT = 'compact',
+  FULL = 'full',
+}
+
+enum DataTypeType {
+  JSON = 'json',
+  CSV = 'csv',
+}
+
 interface IConfig {
   apiKey: string;
   baseUrl: string;
   injectRawResponse: boolean;
   convert: boolean;
   validate: boolean;
-  parse: string;
+  parse: ParseType;
 }
 
 interface ICurrency {
@@ -57,7 +81,7 @@ interface IForexResult {
   description: string;
   from: ICurrency;
   to: ICurrency;
-  outputType: string;
+  outputType: OutputSizeType;
   lastRefresh: string | Date;
   timeZone: string;
   timeSeries: IForexTimeSeries;
@@ -72,25 +96,25 @@ interface IForex {
   intraday(
     from_currency: string,
     to_currency: string,
-    interval?: string,
-    outputSize?: string,
-    dataType?: string,
+    interval?: IntervalType,
+    outputSize?: OutputSizeType,
+    dataType?: DataTypeType,
   ): IForexResult;
   daily(
     from_currency: string,
     to_currency: string,
-    outputSize?: string,
-    dataType?: string,
+    outputSize?: OutputSizeType,
+    dataType?: DataTypeType,
   ): IForexResult;
   weekly(
     from_currency: string,
     to_currency: string,
-    dataType?: string,
+    dataType?: DataTypeType,
   ): IForexResult;
   monthly(
     from_currency: string,
     to_currency: string,
-    dataType?: string,
+    dataType?: DataTypeType,
   ): IForexResult;
 }
 
