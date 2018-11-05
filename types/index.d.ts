@@ -1,10 +1,10 @@
-enum ParseType {
+declare enum ParseType {
   NONE = 'none',
   TRANSFORM = 'transform',
   CLEAN = 'clean',
 }
 
-enum IntervalType {
+declare enum IntervalType {
   ONE_MIN = '1min',
   FIVE_MIN = '5min',
   FIFTEEN_MIN = '15min',
@@ -12,12 +12,12 @@ enum IntervalType {
   SIXTY_MIN = '60min',
 }
 
-enum OutputSizeType {
+declare enum OutputSizeType {
   COMPACT = 'compact',
   FULL = 'full',
 }
 
-enum DataTypeType {
+declare enum DataTypeType {
   JSON = 'json',
   CSV = 'csv',
 }
