@@ -147,48 +147,228 @@ describe('# responseTransformer', () => {
         timeZone: 'UTC',
         timeSeries: {
           '2018-10-24': {
-            open: {
-              CNY: '44754.37511913',
-              USD: '6450.23408373',
+            CNY: {
+              close: '45138.84408922',
+              high: '46386.99556280',
+              low: '44466.86338862',
+              open: '44754.37511913',
             },
-            high: {
-              CNY: '46386.99556280',
-              USD: '6684.10143702',
-            },
-            low: {
-              CNY: '44466.86338862',
-              USD: '6408.34290333',
-            },
-            close: {
-              CNY: '45138.84408922',
-              USD: '6500.40957506',
+            USD: {
+              close: '6500.40957506',
+              high: '6684.10143702',
+              low: '6408.34290333',
+              marketCap: '16458554.25141862',
+              open: '6450.23408373',
             },
             volume: '2531.92572889',
-            marketCap: {
-              USD: '16458554.25141862',
-            },
           },
           '2018-10-23': {
-            open: {
-              CNY: '44754.37511913',
-              USD: '6450.23408373',
+            CNY: {
+              close: '45138.84408922',
+              high: '46386.99556280',
+              low: '44466.86338862',
+              open: '44754.37511913',
             },
-            high: {
-              CNY: '46386.99556280',
-              USD: '6684.10143702',
-            },
-            low: {
-              CNY: '44466.86338862',
-              USD: '6408.34290333',
-            },
-            close: {
-              CNY: '45138.84408922',
-              USD: '6500.40957506',
+            USD: {
+              close: '6500.40957506',
+              high: '6684.10143702',
+              low: '6408.34290333',
+              marketCap: '16458554.25141862',
+              open: '6450.23408373',
             },
             volume: '2531.92572889',
-            marketCap: {
-              USD: '16458554.25141862',
+          },
+        },
+      });
+    });
+  });
+
+  describe('## DIGITAL_CURRENCY_WEEKLY', () => {
+    it('it should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Weekly Prices and Volumes for Digital Currency',
+          '2. Digital Currency Code': 'BTC',
+          '3. Digital Currency Name': 'Bitcoin',
+          '4. Market Code': 'CNY',
+          '5. Market Name': 'Chinese Yuan',
+          '6. Last Refreshed': '2018-10-24 (end of day)',
+          '7. Time Zone': 'UTC',
+        },
+        'Time Series (Digital Currency Weekly)': {
+          '2018-10-24': {
+            '1a. open (CNY)': '44754.37511913',
+            '1b. open (USD)': '6450.23408373',
+            '2a. high (CNY)': '46386.99556280',
+            '2b. high (USD)': '6684.10143702',
+            '3a. low (CNY)': '44466.86338862',
+            '3b. low (USD)': '6408.34290333',
+            '4a. close (CNY)': '45138.84408922',
+            '4b. close (USD)': '6500.40957506',
+            '5. volume': '2531.92572889',
+            '6. market cap (USD)': '16458554.25141862',
+          },
+          '2018-10-17': {
+            '1a. open (CNY)': '44754.37511913',
+            '1b. open (USD)': '6450.23408373',
+            '2a. high (CNY)': '46386.99556280',
+            '2b. high (USD)': '6684.10143702',
+            '3a. low (CNY)': '44466.86338862',
+            '3b. low (USD)': '6408.34290333',
+            '4a. close (CNY)': '45138.84408922',
+            '4b. close (USD)': '6500.40957506',
+            '5. volume': '2531.92572889',
+            '6. market cap (USD)': '16458554.25141862',
+          },
+        },
+      };
+
+      const res = await responseTransformer(
+        {},
+        response,
+        constants.DIGITAL_CURRENCY_WEEKLY,
+      );
+
+      expect(res).toEqual({
+        description: 'Weekly Prices and Volumes for Digital Currency',
+        currency: {
+          code: 'BTC',
+          name: 'Bitcoin',
+        },
+        exchange: {
+          code: 'CNY',
+          name: 'Chinese Yuan',
+        },
+        lastRefreshed: '2018-10-24 23:59:59',
+        timeZone: 'UTC',
+        timeSeries: {
+          '2018-10-24': {
+            CNY: {
+              close: '45138.84408922',
+              high: '46386.99556280',
+              low: '44466.86338862',
+              open: '44754.37511913',
             },
+            USD: {
+              close: '6500.40957506',
+              high: '6684.10143702',
+              low: '6408.34290333',
+              marketCap: '16458554.25141862',
+              open: '6450.23408373',
+            },
+            volume: '2531.92572889',
+          },
+          '2018-10-17': {
+            CNY: {
+              close: '45138.84408922',
+              high: '46386.99556280',
+              low: '44466.86338862',
+              open: '44754.37511913',
+            },
+            USD: {
+              close: '6500.40957506',
+              high: '6684.10143702',
+              low: '6408.34290333',
+              marketCap: '16458554.25141862',
+              open: '6450.23408373',
+            },
+            volume: '2531.92572889',
+          },
+        },
+      });
+    });
+  });
+
+  describe('## DIGITAL_CURRENCY_MONTHLY', () => {
+    it('it should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Monthly Prices and Volumes for Digital Currency',
+          '2. Digital Currency Code': 'BTC',
+          '3. Digital Currency Name': 'Bitcoin',
+          '4. Market Code': 'CNY',
+          '5. Market Name': 'Chinese Yuan',
+          '6. Last Refreshed': '2018-10-24 (end of day)',
+          '7. Time Zone': 'UTC',
+        },
+        'Time Series (Digital Currency Monthly)': {
+          '2018-10-24': {
+            '1a. open (CNY)': '44754.37511913',
+            '1b. open (USD)': '6450.23408373',
+            '2a. high (CNY)': '46386.99556280',
+            '2b. high (USD)': '6684.10143702',
+            '3a. low (CNY)': '44466.86338862',
+            '3b. low (USD)': '6408.34290333',
+            '4a. close (CNY)': '45138.84408922',
+            '4b. close (USD)': '6500.40957506',
+            '5. volume': '2531.92572889',
+            '6. market cap (USD)': '16458554.25141862',
+          },
+          '2018-09-24': {
+            '1a. open (CNY)': '44754.37511913',
+            '1b. open (USD)': '6450.23408373',
+            '2a. high (CNY)': '46386.99556280',
+            '2b. high (USD)': '6684.10143702',
+            '3a. low (CNY)': '44466.86338862',
+            '3b. low (USD)': '6408.34290333',
+            '4a. close (CNY)': '45138.84408922',
+            '4b. close (USD)': '6500.40957506',
+            '5. volume': '2531.92572889',
+            '6. market cap (USD)': '16458554.25141862',
+          },
+        },
+      };
+
+      const res = await responseTransformer(
+        {},
+        response,
+        constants.DIGITAL_CURRENCY_MONTHLY,
+      );
+
+      expect(res).toEqual({
+        description: 'Monthly Prices and Volumes for Digital Currency',
+        currency: {
+          code: 'BTC',
+          name: 'Bitcoin',
+        },
+        exchange: {
+          code: 'CNY',
+          name: 'Chinese Yuan',
+        },
+        lastRefreshed: '2018-10-24 23:59:59',
+        timeZone: 'UTC',
+        timeSeries: {
+          '2018-10-24': {
+            CNY: {
+              close: '45138.84408922',
+              high: '46386.99556280',
+              low: '44466.86338862',
+              open: '44754.37511913',
+            },
+            USD: {
+              close: '6500.40957506',
+              high: '6684.10143702',
+              low: '6408.34290333',
+              marketCap: '16458554.25141862',
+              open: '6450.23408373',
+            },
+            volume: '2531.92572889',
+          },
+          '2018-09-24': {
+            CNY: {
+              close: '45138.84408922',
+              high: '46386.99556280',
+              low: '44466.86338862',
+              open: '44754.37511913',
+            },
+            USD: {
+              close: '6500.40957506',
+              high: '6684.10143702',
+              low: '6408.34290333',
+              marketCap: '16458554.25141862',
+              open: '6450.23408373',
+            },
+            volume: '2531.92572889',
           },
         },
       });

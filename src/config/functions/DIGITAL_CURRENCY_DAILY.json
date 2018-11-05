@@ -38,7 +38,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|1a. open ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|open|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|open",
       "format": {
         "keyIndex": 0,
         "regex": "\\(([^)]+)\\)",
@@ -47,7 +47,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|1b. open ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|open|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|open",
       "format": {
         "keyIndex": 1,
         "regex": "\\(([^)]+)\\)",
@@ -56,7 +56,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|2a. high ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|high|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|high",
       "format": {
         "keyIndex": 2,
         "regex": "\\(([^)]+)\\)",
@@ -65,7 +65,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|2b. high ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|high|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|high",
       "format": {
         "keyIndex": 3,
         "regex": "\\(([^)]+)\\)",
@@ -74,7 +74,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|3a. low ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|low|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|low",
       "format": {
         "keyIndex": 4,
         "regex": "\\(([^)]+)\\)",
@@ -83,7 +83,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|3b. low ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|low|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|low",
       "format": {
         "keyIndex": 5,
         "regex": "\\(([^)]+)\\)",
@@ -92,7 +92,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|4a. close ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|close|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|close",
       "format": {
         "keyIndex": 6,
         "regex": "\\(([^)]+)\\)",
@@ -101,7 +101,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|4b. close ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|close|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|close",
       "format": {
         "keyIndex": 7,
         "regex": "\\(([^)]+)\\)",
@@ -118,7 +118,7 @@
     },
     {
       "from": "Time Series (Digital Currency Daily)|[dynamic]|6. market cap ([dynamicFormat])",
-      "to": "timeSeries|[dynamic]|marketCap|[dynamicFormat]",
+      "to": "timeSeries|[dynamic]|[dynamicFormat]|marketCap",
       "format": {
         "keyIndex": 9,
         "regex": "\\(([^)]+)\\)",
