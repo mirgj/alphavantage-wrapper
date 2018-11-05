@@ -10,6 +10,10 @@ describe('# parser', () => {
 
     expect(config).toEqual({
       baseUrl: configuration.BASE_URL,
+      convert: false,
+      injectRawResponse: false,
+      parse: 'transform',
+      validate: false,
       ...input,
     });
   });
@@ -18,12 +22,39 @@ describe('# parser', () => {
     const input = {
       apiKey: 'an-API-Key',
       baseUrl: 'a-base-url',
+      convert: true,
+      injectRawResponse: true,
+      parse: 'clean',
+      validate: true,
     };
     const config = parser(input);
 
     expect(config).toEqual({
       ...input,
     });
+  });
+
+  it.each(['clean', 'transform', 'none'])(
+    'should NOT throw an exception if parse is of an expected value',
+    ley => {
+      const input = {
+        apiKey: 'key',
+        parse: ley,
+      };
+      expect(() => parser(input)).not.toThrowError(
+        'parse contains an unexpected value',
+      );
+    },
+  );
+
+  it('should throw an exception if parse is of an unexpected value', () => {
+    const input = {
+      apiKey: 'key',
+      parse: 'not-a-valid-value',
+    };
+    expect(() => parser(input)).toThrowError(
+      'parse contains an unexpected value',
+    );
   });
 
   it.each([null, undefined, ''])(
