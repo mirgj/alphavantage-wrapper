@@ -1,8 +1,8 @@
-import request from 'request-promise';
+import request from 'request-promise-native';
 import responseTransformer from './responseTransformer';
 import requestCreator from './requestCreator';
 
-jest.mock('request-promise');
+jest.mock('request-promise-native');
 jest.mock('./responseTransformer');
 
 describe('# requestCreator', () => {

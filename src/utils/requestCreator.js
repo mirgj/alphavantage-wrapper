@@ -1,5 +1,5 @@
 import querystring from 'querystring';
-import rp from 'request-promise';
+import rp from 'request-promise-native';
 import responseTransformer from './responseTransformer';
 
 export default async (config, query) => {
