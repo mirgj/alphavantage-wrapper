@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import crypto from './crypto';
 import requestCreator from '../utils/requestCreator';
 import * as constants from '../constants/index';
@@ -10,7 +9,6 @@ describe('# crypto', () => {
   let config;
   beforeEach(() => {
     requestCreator.mockReturnValue(Promise.resolve('an-output'));
-    querystring.stringify.mockReturnValue('a-query');
     config = {
       url: 'a-mocked-url',
     };
@@ -18,7 +16,6 @@ describe('# crypto', () => {
 
   afterEach(() => {
     requestCreator.mockClear();
-    querystring.stringify.mockClear();
   });
 
   it('should create the object correctly', () => {
@@ -34,16 +31,11 @@ describe('# crypto', () => {
     const result = await fn.daily('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(querystring.stringify).toBeCalledWith({
+    expect(requestCreator).toBeCalledWith(config, {
       function: constants.DIGITAL_CURRENCY_DAILY,
       symbol: 'BTC',
       market: 'EUR',
     });
-    expect(requestCreator).toBeCalledWith(
-      config,
-      `${config.url}a-query`,
-      constants.DIGITAL_CURRENCY_DAILY,
-    );
   });
 
   it('should call the weekly data correctly', async () => {
@@ -51,16 +43,11 @@ describe('# crypto', () => {
     const result = await fn.weekly('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(querystring.stringify).toBeCalledWith({
+    expect(requestCreator).toBeCalledWith(config, {
       function: constants.DIGITAL_CURRENCY_WEEKLY,
       symbol: 'BTC',
       market: 'EUR',
     });
-    expect(requestCreator).toBeCalledWith(
-      config,
-      `${config.url}a-query`,
-      constants.DIGITAL_CURRENCY_WEEKLY,
-    );
   });
 
   it('should call the monthly data correctly', async () => {
@@ -68,15 +55,10 @@ describe('# crypto', () => {
     const result = await fn.monthly('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(querystring.stringify).toBeCalledWith({
+    expect(requestCreator).toBeCalledWith(config, {
       function: constants.DIGITAL_CURRENCY_MONTHLY,
       symbol: 'BTC',
       market: 'EUR',
     });
-    expect(requestCreator).toBeCalledWith(
-      config,
-      `${config.url}a-query`,
-      constants.DIGITAL_CURRENCY_MONTHLY,
-    );
   });
 });

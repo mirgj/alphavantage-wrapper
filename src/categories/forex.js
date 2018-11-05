@@ -1,17 +1,16 @@
-import querystring from 'querystring';
 import requestCreator from '../utils/requestCreator';
 import * as constants from '../constants/index';
 
-const baseRequest = config => async (
+const execute = config => async (
   from,
   to,
   interval,
   outputSize,
   dataType,
-  funct,
+  fn,
 ) => {
   const query = {
-    function: funct,
+    function: fn,
     from_symbol: from,
     to_symbol: to,
   };
@@ -20,15 +19,7 @@ const baseRequest = config => async (
   if (outputSize) query.outputsize = outputSize;
   if (dataType) query.datatype = dataType;
 
-  const appendQuery = querystring.stringify(query);
-
-  const result = await requestCreator(
-    config,
-    `${config.url}${appendQuery}`,
-    funct,
-  );
-
-  return result;
+  return requestCreator(config, query);
 };
 
 const forex = config => ({
@@ -39,7 +30,7 @@ const forex = config => ({
     outputSize = 'compact',
     dataType = 'json',
   ) =>
-    baseRequest(config)(
+    execute(config)(
       from,
       to,
       interval,
@@ -48,18 +39,11 @@ const forex = config => ({
       constants.FX_INTRADAY,
     ),
   daily: (from, to, outputSize = 'compact', dataType = 'json') =>
-    baseRequest(config)(
-      from,
-      to,
-      null,
-      outputSize,
-      dataType,
-      constants.FX_DAILY,
-    ),
+    execute(config)(from, to, null, outputSize, dataType, constants.FX_DAILY),
   weekly: (from, to, dataType = 'json') =>
-    baseRequest(config)(from, to, null, null, dataType, constants.FX_WEEKLY),
+    execute(config)(from, to, null, null, dataType, constants.FX_WEEKLY),
   monthly: (from, to, dataType = 'json') =>
-    baseRequest(config)(from, to, null, null, dataType, constants.FX_MONTHLY),
+    execute(config)(from, to, null, null, dataType, constants.FX_MONTHLY),
 });
 
 export default config => forex(config);

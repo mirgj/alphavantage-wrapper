@@ -1,21 +1,14 @@
-import querystring from 'querystring';
 import requestCreator from '../utils/requestCreator';
 import * as constants from '../constants/index';
 
 const baseRequest = config => async (symbol, market, funct) => {
-  const appendQuery = querystring.stringify({
+  const query = {
     function: funct,
     symbol,
     market,
-  });
+  };
 
-  const result = await requestCreator(
-    config,
-    `${config.url}${appendQuery}`,
-    funct,
-  );
-
-  return result;
+  return requestCreator(config, query);
 };
 
 const digitalCurrency = config => ({

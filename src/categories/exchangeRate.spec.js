@@ -1,4 +1,3 @@
-import querystring from 'querystring';
 import exchangeRate from './exchangeRate';
 import requestCreator from '../utils/requestCreator';
 import * as constants from '../constants/index';
@@ -11,7 +10,6 @@ describe('# exchangeRate', () => {
 
   beforeEach(() => {
     requestCreator.mockReturnValue(Promise.resolve('an-output'));
-    querystring.stringify.mockReturnValue('a-query');
     config = {
       url: 'a-mocked-url',
     };
@@ -22,15 +20,10 @@ describe('# exchangeRate', () => {
     const result = await fn('USD', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(querystring.stringify).toBeCalledWith({
+    expect(requestCreator).toBeCalledWith(config, {
       function: constants.CURRENCY_EXCHANGE_RATE,
       from_currency: 'USD',
       to_currency: 'EUR',
     });
-    expect(requestCreator).toBeCalledWith(
-      config,
-      `${config.url}a-query`,
-      constants.CURRENCY_EXCHANGE_RATE,
-    );
   });
 });
