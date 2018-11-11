@@ -49,15 +49,18 @@ interface ICyptoMarketValue extends IMarketValue {
 
 interface ICryptoTimeType {
   [key: string]: ICyptoMarketValue;
+}
+
+interface IVolume {
   volume: string | number;
 }
 
-interface ICyptoTimeSeries {
-  [key: string | Date]: ICryptoTimeType;
-}
+type ICyptoTimeSeries = IVolume & {
+  [key: string]: ICryptoTimeType;
+};
 
 interface IForexTimeSeries {
-  [key: string | Date]: IMarketValue;
+  [key: string]: IMarketValue;
 }
 
 interface IExchangeRateResult {
