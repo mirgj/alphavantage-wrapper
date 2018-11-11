@@ -17,7 +17,9 @@ describe('# responseTransformer', () => {
       };
 
       const res = await responseTransformer(
-        {},
+        {
+          parse: 'transform',
+        },
         response,
         constants.CURRENCY_EXCHANGE_RATE,
       );
@@ -51,7 +53,10 @@ describe('# responseTransformer', () => {
       };
 
       const res = await responseTransformer(
-        { injectRawResponse: true },
+        {
+          injectRawResponse: true,
+          parse: 'transform',
+        },
         response,
         constants.CURRENCY_EXCHANGE_RATE,
       );
@@ -78,7 +83,10 @@ describe('# responseTransformer', () => {
       };
 
       const res = await responseTransformer(
-        { injectRawResponse: true },
+        {
+          injectRawResponse: true,
+          parse: 'transform',
+        },
         response,
         constants.CURRENCY_EXCHANGE_RATE,
       );
@@ -128,7 +136,9 @@ describe('# responseTransformer', () => {
       };
 
       const res = await responseTransformer(
-        {},
+        {
+          parse: 'transform',
+        },
         response,
         constants.DIGITAL_CURRENCY_DAILY,
       );
@@ -224,7 +234,9 @@ describe('# responseTransformer', () => {
       };
 
       const res = await responseTransformer(
-        {},
+        {
+          parse: 'transform',
+        },
         response,
         constants.DIGITAL_CURRENCY_WEEKLY,
       );
@@ -320,7 +332,9 @@ describe('# responseTransformer', () => {
       };
 
       const res = await responseTransformer(
-        {},
+        {
+          parse: 'transform',
+        },
         response,
         constants.DIGITAL_CURRENCY_MONTHLY,
       );
@@ -403,7 +417,9 @@ describe('# responseTransformer', () => {
         },
       };
       const res = await responseTransformer(
-        {},
+        {
+          parse: 'transform',
+        },
         response,
         constants.FX_INTRADAY,
       );
@@ -464,7 +480,13 @@ describe('# responseTransformer', () => {
           },
         },
       };
-      const res = await responseTransformer({}, response, constants.FX_DAILY);
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.FX_DAILY,
+      );
 
       expect(res).toEqual({
         description: 'Forex Daily Prices (open, high, low, close)',
@@ -520,7 +542,13 @@ describe('# responseTransformer', () => {
           },
         },
       };
-      const res = await responseTransformer({}, response, constants.FX_WEEKLY);
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.FX_WEEKLY,
+      );
 
       expect(res).toEqual({
         description: 'Forex Weekly Prices (open, high, low, close)',
@@ -575,7 +603,13 @@ describe('# responseTransformer', () => {
           },
         },
       };
-      const res = await responseTransformer({}, response, constants.FX_MONTHLY);
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.FX_MONTHLY,
+      );
 
       expect(res).toEqual({
         description: 'Forex Monthly Prices (open, high, low, close)',

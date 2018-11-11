@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import converterFactory from '../converters';
+import { clean } from './cleaner';
 import * as constants from '../constants';
+import * as configuration from '../config';
 
 const mappingsCache = {};
 
@@ -132,16 +134,20 @@ export default async (config, response, functionType) => {
   const injectRawResponse = !!config.injectRawResponse || false;
   const functionConfig = await loadFunctionConfig(functionType);
 
-  if (response[functionConfig.validity]) {
-    const res = {
-      ...mapper(response, functionConfig.propertyMappings),
-    };
-
-    if (injectRawResponse) {
-      res.raw = response;
+  let res = response;
+  if (config.parse === configuration.TRANSFORM) {
+    if (response[functionConfig.validity]) {
+      res = {
+        ...mapper(response, functionConfig.propertyMappings),
+      };
     }
-    return res;
+  } else if (config.parse === configuration.CLEAN) {
+    res = clean(response);
   }
 
-  return response;
+  if (injectRawResponse) {
+    res.raw = response;
+  }
+
+  return res;
 };
