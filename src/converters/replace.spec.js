@@ -15,7 +15,7 @@ describe('# replace', () => {
   it.each([null, undefined, ''])(
     'should throw an exception if the value is %s',
     key => {
-      expect(() => replacer(key)).toThrowError(
+      expect(() => replacer(key)).toThrow(
         `The provided value is not valid: ${key}`,
       );
     },
@@ -24,9 +24,7 @@ describe('# replace', () => {
   it.each([null, undefined, ''])(
     'should throw an exception if the context is %s',
     key => {
-      expect(() => replacer('good-value', key)).toThrowError(
-        `context is required`,
-      );
+      expect(() => replacer('good-value', key)).toThrow(`context is required`);
     },
   );
 
@@ -37,7 +35,7 @@ describe('# replace', () => {
         from: key,
         to: 'to',
       };
-      expect(() => replacer('good-value', context)).toThrowError(
+      expect(() => replacer('good-value', context)).toThrow(
         `context.from is required`,
       );
     },
@@ -50,7 +48,7 @@ describe('# replace', () => {
         from: 'from',
         to: key,
       };
-      expect(() => replacer('good-value', context)).toThrowError(
+      expect(() => replacer('good-value', context)).toThrow(
         `context.to is required`,
       );
     },

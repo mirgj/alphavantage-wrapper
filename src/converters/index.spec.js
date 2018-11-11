@@ -19,7 +19,7 @@ describe('# converters', () => {
     });
 
     expect(result).toEqual('replaced');
-    expect(replace).toBeCalledWith('a-value', { a: 'context' });
+    expect(replace).toHaveBeenCalledWith('a-value', { a: 'context' });
   });
 
   it('should throw an exception if converter is not supported', () => {
@@ -28,7 +28,7 @@ describe('# converters', () => {
       context: { a: 'context' },
     };
 
-    expect(() => loadConverter('value', converter)).toThrowError(
+    expect(() => loadConverter('value', converter)).toThrow(
       `Converter '${converter.type}' is not supported`,
     );
   });
@@ -36,7 +36,7 @@ describe('# converters', () => {
   it.each([null, undefined, ''])(
     'should throw an exception if converter is %s',
     key => {
-      expect(() => loadConverter('value', key)).toThrowError(
+      expect(() => loadConverter('value', key)).toThrow(
         'converter cannot be null',
       );
     },
@@ -48,7 +48,7 @@ describe('# converters', () => {
       const context = {
         type: key,
       };
-      expect(() => loadConverter('value', context)).toThrowError(
+      expect(() => loadConverter('value', context)).toThrow(
         'converter.type is required',
       );
     },
@@ -61,7 +61,7 @@ describe('# converters', () => {
         type: 'key',
         context: key,
       };
-      expect(() => loadConverter('value', context)).toThrowError(
+      expect(() => loadConverter('value', context)).toThrow(
         'converter.context is required',
       );
     },

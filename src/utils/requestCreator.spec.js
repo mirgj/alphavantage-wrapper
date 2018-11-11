@@ -20,12 +20,12 @@ describe('# requestCreator', () => {
     );
 
     expect(result).toEqual('an-output');
-    expect(responseTransformer).toBeCalledWith(
+    expect(responseTransformer).toHaveBeenCalledWith(
       { url: 'url?' },
       'a-response',
       'a-function',
     );
-    expect(request).toBeCalledWith('url?function=a-function', {
+    expect(request).toHaveBeenCalledWith('url?function=a-function', {
       json: true,
     });
   });
@@ -40,7 +40,9 @@ describe('# requestCreator', () => {
       new Error(`Error performing the request for function 'a-function'`),
     );
 
-    expect(request).toBeCalledWith('url?function=a-function', { json: true });
+    expect(request).toHaveBeenCalledWith('url?function=a-function', {
+      json: true,
+    });
     expect(responseTransformer).not.toBeCalled();
   });
 });

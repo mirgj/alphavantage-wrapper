@@ -41,7 +41,7 @@ describe('# parser', () => {
         apiKey: 'key',
         parse: ley,
       };
-      expect(() => parser(input)).not.toThrowError(
+      expect(() => parser(input)).not.toThrow(
         'parse contains an unexpected value',
       );
     },
@@ -52,9 +52,7 @@ describe('# parser', () => {
       apiKey: 'key',
       parse: 'not-a-valid-value',
     };
-    expect(() => parser(input)).toThrowError(
-      'parse contains an unexpected value',
-    );
+    expect(() => parser(input)).toThrow('parse contains an unexpected value');
   });
 
   it.each([null, undefined, ''])(
@@ -63,14 +61,14 @@ describe('# parser', () => {
       const input = {
         apiKey: key,
       };
-      expect(() => parser(input)).toThrowError('apiKey is a required field');
+      expect(() => parser(input)).toThrow('apiKey is a required field');
     },
   );
 
   it.each([null, undefined, 'not-an-object'])(
     'should throw an exception if config is %s',
     input => {
-      expect(() => parser(input)).toThrowError(
+      expect(() => parser(input)).toThrow(
         'config is required and has to be an object',
       );
     },
