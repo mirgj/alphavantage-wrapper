@@ -20,7 +20,7 @@ describe('# exchangeRate', () => {
     const result = await fn('USD', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.CURRENCY_EXCHANGE_RATE,
       from_currency: 'USD',
       to_currency: 'EUR',

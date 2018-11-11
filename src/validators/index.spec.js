@@ -1,6 +1,25 @@
 import validators from './index';
 
 describe('# Validators', () => {
+  describe('## digitalPhysicalCurrency', () => {
+    it('should validate a correct value (Digital)', () => {
+      const ex = validators('BTC', 'digitalPhysicalCurrency');
+
+      expect(ex).toEqual(true);
+    });
+
+    it('should validate a correct value (Physical)', () => {
+      const ex = validators('EUR', 'digitalPhysicalCurrency');
+
+      expect(ex).toEqual(true);
+    });
+
+    it('should throw an exception if not supported', () => {
+      expect(() =>
+        validators('invalid-currency', 'digitalPhysicalCurrency'),
+      ).toThrow();
+    });
+  });
   describe('## digitalCurrency', () => {
     it('should validate a correct value', () => {
       const ex = validators('BTC', 'digitalCurrency');

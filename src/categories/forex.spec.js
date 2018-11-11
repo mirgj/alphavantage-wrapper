@@ -32,7 +32,7 @@ describe('# forex', () => {
     const result = await fn.intraday('USD', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_INTRADAY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -47,7 +47,7 @@ describe('# forex', () => {
     const result = await fn.intraday('USD', 'EUR', 'a-interval', 'full', 'csv');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_INTRADAY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -62,7 +62,7 @@ describe('# forex', () => {
     const result = await fn.daily('USD', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_DAILY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -76,7 +76,7 @@ describe('# forex', () => {
     const result = await fn.daily('USD', 'EUR', 'full', 'csv');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_DAILY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -90,7 +90,7 @@ describe('# forex', () => {
     const result = await fn.weekly('USD', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_WEEKLY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -103,7 +103,7 @@ describe('# forex', () => {
     const result = await fn.weekly('USD', 'EUR', 'csv');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_WEEKLY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -116,7 +116,7 @@ describe('# forex', () => {
     const result = await fn.monthly('USD', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_MONTHLY,
       from_symbol: 'USD',
       to_symbol: 'EUR',
@@ -129,7 +129,7 @@ describe('# forex', () => {
     const result = await fn.monthly('USD', 'EUR', 'csv');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.FX_MONTHLY,
       from_symbol: 'USD',
       to_symbol: 'EUR',

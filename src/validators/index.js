@@ -6,6 +6,12 @@ import interval from './interval';
 
 export default (value, type) => {
   switch (type) {
+    case 'digitalPhysicalCurrency':
+      if (!digitalCurrencies(value) && !physicalCurrencies(value)) {
+        throw new Error(`Currency '${value}' was not expected`);
+      }
+
+      return true;
     case 'digitalCurrency':
       if (!digitalCurrencies(value)) {
         throw new Error(`Digital currency '${value}' was not expected`);

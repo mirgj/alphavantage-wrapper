@@ -1,4 +1,5 @@
 import requestCreator from '../utils/requestCreator';
+import validators from '../validators/index';
 import * as constants from '../constants/index';
 
 const execute = config => async (
@@ -9,15 +10,26 @@ const execute = config => async (
   dataType,
   fn,
 ) => {
+  const validate = !!config.validate || false;
+
+  if (validate) {
+    validators(from, 'physicalCurrency');
+    validators(to, 'physicalCurrency');
+    validators(dataType, 'dataType');
+
+    if (interval) validators(interval, 'interval');
+    if (outputSize) validators(outputSize, 'outputSize');
+  }
+
   const query = {
     function: fn,
     from_symbol: from,
     to_symbol: to,
+    datatype: dataType,
   };
 
   if (interval) query.interval = interval;
   if (outputSize) query.outputsize = outputSize;
-  if (dataType) query.datatype = dataType;
 
   return requestCreator(config, query);
 };

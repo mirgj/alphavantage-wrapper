@@ -31,7 +31,7 @@ describe('# crypto', () => {
     const result = await fn.daily('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.DIGITAL_CURRENCY_DAILY,
       symbol: 'BTC',
       market: 'EUR',
@@ -43,7 +43,7 @@ describe('# crypto', () => {
     const result = await fn.weekly('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.DIGITAL_CURRENCY_WEEKLY,
       symbol: 'BTC',
       market: 'EUR',
@@ -55,7 +55,7 @@ describe('# crypto', () => {
     const result = await fn.monthly('BTC', 'EUR');
 
     expect(result).toEqual('an-output');
-    expect(requestCreator).toBeCalledWith(config, {
+    expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.DIGITAL_CURRENCY_MONTHLY,
       symbol: 'BTC',
       market: 'EUR',

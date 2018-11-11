@@ -1,7 +1,15 @@
 import requestCreator from '../utils/requestCreator';
+import validators from '../validators/index';
 import * as constants from '../constants/index';
 
 const baseRequest = config => async (symbol, market, funct) => {
+  const validate = !!config.validate || false;
+
+  if (validate) {
+    validators(symbol, 'digitalCurrency');
+    validators(market, 'physicalCurrency');
+  }
+
   const query = {
     function: funct,
     symbol,
