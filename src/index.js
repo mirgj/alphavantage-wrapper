@@ -2,6 +2,7 @@ import parser from './config/parser';
 import crypto from './categories/crypto';
 import forex from './categories/forex';
 import exchangeRate from './categories/exchangeRate';
+import { clean } from './utils/cleaner';
 
 export default config => {
   const parsedConfig = parser(config);
@@ -11,5 +12,8 @@ export default config => {
     crypto: crypto(parsedConfig),
     forex: forex(parsedConfig),
     exchangeRate: exchangeRate(parsedConfig),
+    utils: {
+      cleaner: clean,
+    },
   };
 };

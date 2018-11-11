@@ -121,9 +121,14 @@ interface IForex {
   ): IForexResult;
 }
 
+interface IUtils {
+  cleaner(obj: object): object;
+}
+
 interface IResult {
   crypto: ICrypto;
   forex: IForex;
+  utils: IUtils;
   exchangeRate(from_currency: string, to_currency: string): IExchangeRateResult;
 }
 
