@@ -132,10 +132,11 @@ const loadFunctionConfig = async functionType => {
 
 export default async (config, response, functionType) => {
   const injectRawResponse = !!config.injectRawResponse || false;
-  const functionConfig = await loadFunctionConfig(functionType);
 
   let res = response;
   if (config.parse === configuration.TRANSFORM) {
+    const functionConfig = await loadFunctionConfig(functionType);
+
     if (response[functionConfig.validity]) {
       res = {
         ...mapper(response, functionConfig.propertyMappings),
