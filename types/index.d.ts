@@ -132,4 +132,6 @@ interface IResult {
   exchangeRate(from_currency: string, to_currency: string): IExchangeRateResult;
 }
 
-export function init(config: IConfig): IResult;
+function init(config: IConfig): IResult;
+
+export = init;
