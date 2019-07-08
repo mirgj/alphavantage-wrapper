@@ -42,7 +42,7 @@ const q = alphavantagewrapper({
   apiKey: '<your API key>',
 });
 
-q.exchangeRate('BTC', 'USD').then(console.log);
+const output = await q.exchangeRate('BTC', 'USD');
 ```
 
 The output of the example will be the following (with `parse` mode set to `transform`):
