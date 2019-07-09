@@ -30,6 +30,24 @@ describe('# requestCreator', () => {
     });
   });
 
+  it('it should create the request and NOT call the transformer in case the dataType is not json', async () => {
+    request.mockReturnValue(Promise.resolve('a-response-output'));
+    responseTransformer.mockReturnValue('an-output');
+    const result = await requestCreator(
+      { url: 'url?' },
+      { function: 'a-function', datatype: 'something-not-json' },
+    );
+
+    expect(result).toEqual('a-response-output');
+    expect(responseTransformer).not.toHaveBeenCalledWith();
+    expect(request).toHaveBeenCalledWith(
+      'url?function=a-function&datatype=something-not-json',
+      {
+        json: false,
+      },
+    );
+  });
+
   it('it should throw an exception and not call the transformer', async () => {
     request.mockReturnValue(Promise.reject(Error('an-error')));
     responseTransformer.mockReturnValue('an-output');
@@ -43,6 +61,6 @@ describe('# requestCreator', () => {
     expect(request).toHaveBeenCalledWith('url?function=a-function', {
       json: true,
     });
-    expect(responseTransformer).not.toBeCalled();
+    expect(responseTransformer).not.toHaveBeenCalled();
   });
 });
