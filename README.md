@@ -97,7 +97,9 @@ While in case `parse` mode is set to `none` the output will be the same as the A
 }
 ```
 
-otherwhile, in case is `none` the original output provided from the API will be maintained. In any case, if `injectRawResponse` is set to `true`, the original output will be replicated inside a property `raw` in the output. Example:
+The last two parse mode are the same for all the other APIs and will not be explained in the next examples as they're mostly related on how **alphavantage** provides the output.
+
+In any case, if `injectRawResponse` is set to `true`, the original output will be replicated inside a property `raw` in the output. Example:
 
 ```js
 {
