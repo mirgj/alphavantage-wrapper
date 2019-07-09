@@ -1,6 +1,6 @@
 # alphavantage-wrapper
 
-This small library wraps around the [Alpha Vantage APIs](https://www.alphavantage.co/) with an easy and cleaner interface.
+This small library wraps around the [Alpha Vantage APIs](https://www.alphavantage.co/) with an easy and cleaner interface. The following documentation is related to the wrapper with recalls to the [official documentation](https://www.alphavantage.co/documentation/).
 
 ## Initialisation
 
@@ -35,6 +35,8 @@ Follow the documentation to know more about the single functionalities
 
 `exchangeRate` to be used to get the exchange rate from currency A to currency B. Crypto currencies are also supported. The following example shows the conversion rate from BTC (bitcoin) to USD.
 
+Example:
+
 ```js
 import alphavantagewrapper from 'alphavantage-wrapper';
 
@@ -49,17 +51,17 @@ The output of the example will be the following (with `parse` mode set to `trans
 
 ```js
 {
-   "from":{
-      "code":"BTC",
-      "name":"Bitcoin"
-   },
-   "to":{
-      "code":"USD",
-      "name":"United States Dollar"
-   },
-   "exchangeRate":"11884.15000000",
-   "lastRefresh":"2019-07-08 15:28:15",
-   "timeZone":"UTC"
+  "from":{
+    "code":"BTC",
+    "name":"Bitcoin"
+  },
+  "to":{
+    "code":"USD",
+    "name":"United States Dollar"
+  },
+  "exchangeRate":"11884.15000000",
+  "lastRefresh":"2019-07-08 15:28:15",
+  "timeZone":"UTC"
 }
 ```
 
@@ -67,15 +69,31 @@ if the `parse` mode is set to `clean` the output will be following:
 
 ```js
 {
-   "realtimeCurrencyExchangeRate":{
-      "from_CurrencyCode":"BTC",
-      "from_CurrencyName":"Bitcoin",
-      "to_CurrencyCode":"USD",
-      "to_CurrencyName":"United States Dollar",
-      "exchangeRate":"11887.26000000",
-      "lastRefreshed":"2019-07-08 15:32:33",
-      "timeZone":"UTC"
-   }
+  "realtimeCurrencyExchangeRate":{
+    "from_CurrencyCode":"BTC",
+    "from_CurrencyName":"Bitcoin",
+    "to_CurrencyCode":"USD",
+    "to_CurrencyName":"United States Dollar",
+    "exchangeRate":"11887.26000000",
+    "lastRefreshed":"2019-07-08 15:32:33",
+    "timeZone":"UTC"
+  }
+}
+```
+
+While in case `parse` mode is set to `none` the output will be the same as the API:
+
+```js
+{
+  "Realtime Currency Exchange Rate":{
+    "1. From_Currency Code":"BTC",
+    "2. From_Currency Name":"Bitcoin",
+    "3. To_Currency Code":"USD",
+    "4. To_Currency Name":"United States Dollar",
+    "5. Exchange Rate":"11905.29000000",
+    "6. Last Refreshed":"2019-07-08 15:37:02",
+    "7. Time Zone":"UTC"
+  }
 }
 ```
 
@@ -83,27 +101,82 @@ otherwhile, in case is `none` the original output provided from the API will be 
 
 ```js
 {
-   "from":{
+  "from":{
+    "code":"BTC",
+    "name":"Bitcoin"
+  },
+  "to":{
+    "code":"USD",
+    "name":"United States Dollar"
+  },
+  "exchangeRate":"11905.29000000",
+  "lastRefresh":"2019-07-08 15:37:02",
+  "timeZone":"UTC",
+  "raw":{
+    "Realtime Currency Exchange Rate":{
+      "1. From_Currency Code":"BTC",
+      "2. From_Currency Name":"Bitcoin",
+      "3. To_Currency Code":"USD",
+      "4. To_Currency Name":"United States Dollar",
+      "5. Exchange Rate":"11905.29000000",
+      "6. Last Refreshed":"2019-07-08 15:37:02",
+      "7. Time Zone":"UTC"
+    }
+  }
+}
+```
+
+## crypto
+
+This module provide functions related to the **crypto currencies**. The following function are exposed through the module:
+
+- `daily`: returns daily rates of the give crypto currency
+- `weekly`: returns weekly rates of the give crypto currency
+- `monthly`: returns monthly rates of the give crypto currency
+
+Each of the method listed above will have the same signature which is the following: `[methodName](symbol: string, market: string)` where `symbol` is the crypto currency code (eg. BTC) and `market` is the referred market to use as refernce for the convertion (eg. USD)
+
+Example:
+
+```js
+import alphavantagewrapper from 'alphavantage-wrapper';
+
+const q = alphavantagewrapper({
+  apiKey: 'zldkz5',
+});
+
+const output = await q.crypto.daily('BTC', 'USD');
+```
+
+The output of the example will be the following (with `parse` mode set to `transform`):
+
+```js
+{
+   "description":"Daily Prices and Volumes for Digital Currency",
+   "currency":{
       "code":"BTC",
       "name":"Bitcoin"
    },
-   "to":{
+   "exchange":{
       "code":"USD",
       "name":"United States Dollar"
    },
-   "exchangeRate":"11905.29000000",
-   "lastRefresh":"2019-07-08 15:37:02",
+   "lastRefreshed":"2019-07-08 23:59:59",
    "timeZone":"UTC",
-   "raw":{
-      "Realtime Currency Exchange Rate":{
-         "1. From_Currency Code":"BTC",
-         "2. From_Currency Name":"Bitcoin",
-         "3. To_Currency Code":"USD",
-         "4. To_Currency Name":"United States Dollar",
-         "5. Exchange Rate":"11905.29000000",
-         "6. Last Refreshed":"2019-07-08 15:37:02",
-         "7. Time Zone":"UTC"
+   "timeSeries":{
+      "2019-07-08":{
+         "USD":{
+            "open":"11481.98207885",
+            "high":"12373.74881946",
+            "low":"11367.45957574",
+            "close":"12311.24952666",
+            "marketCap":"933835349.19382334"
+         },
+         "volume":"75852.19901291"
       }
+      // repeted multiple time with all the give days
    }
 }
 ```
+
+`weekly` and `monthly` just the _timeSeries_ will be aggregated based on the week/month.
