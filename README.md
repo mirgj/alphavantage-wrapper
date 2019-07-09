@@ -181,4 +181,62 @@ The output of the example will be the following (with `parse` mode set to `trans
 }
 ```
 
-`weekly` and `monthly` just the _timeSeries_ will be aggregated based on the week/month.
+`weekly` and `monthly` will be the same but _timeSeries_ will be aggregated based on the week/month.
+
+## forex
+
+This module provide functions related to the **forex** market. The following function are exposed through the module:
+
+- `intraday(from_currency: string, to_currency: string, interval?: IntervalType, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides intraday rates for the given currencies
+- `daily(from_currency: string, to_currency: string, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides daily rates for the given currencies
+- `weekly(from_currency: string, to_currency: string, dataType?: DataTypeType)`: provides weekly rates for the given currencies
+- `monthly(from_currency: string, to_currency: string, dataType?: DataTypeType)`: provides monthly rates for the given currencies
+
+These are the relative parameters with the specific meaning (defined also in the service docs):
+
+- `from_currency`: Currency symbol value (eg: USD)
+- `to_currency`: Currency symbol value (eg: EUR)
+- `interval`: Time interval between two consecutive data points in the time series. The following values are supported: `1min`, `5min`, `15min`, `30min`, `60min` (default: **5min**)
+- `outputSize`: Accepts `compact` or `full` and will affect the number of output; compact will returns only the last 100 data points (default: **compact**)
+- `dataType`: Accepts `json` or `csv` and will affect the output of the API call (default: **json**)
+
+Example:
+
+```js
+import alphavantagewrapper from 'alphavantage-wrapper';
+
+const q = alphavantagewrapper({
+  apiKey: 'zldkz5',
+});
+
+const output = await q.forex.intraday('USD', 'EUR');
+```
+
+The output of the example will be the following (with `parse` mode set to `transform`):
+
+```js
+{
+   "description":"FX Intraday (5min) Time Series",
+   "from":{
+      "code":"USD"
+   },
+   "to":{
+      "code":"EUR"
+   },
+   "lastRefreshed":"2019-07-09 14:55:00",
+   "timeZone":"UTC",
+   "interval":"5min",
+   "outputType":"Compact",
+   "timeSeries":{
+      "2019-07-09 14:55:00":{
+         "open":"0.8924",
+         "high":"0.8924",
+         "low":"0.8920",
+         "close":"0.8920"
+      },
+      // many others based on the interval value
+   }
+}
+```
+
+`daily`, `weekly` and `monthly` will be the same but the _timeSeries_ will be aggregated based on the day/week/month.
