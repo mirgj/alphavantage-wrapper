@@ -144,7 +144,7 @@ Example:
 import alphavantagewrapper from 'alphavantage-wrapper';
 
 const q = alphavantagewrapper({
-  apiKey: 'zldkz5',
+  apiKey: '<your API key>',
 });
 
 const output = await q.crypto.daily('BTC', 'USD');
@@ -206,7 +206,7 @@ Example:
 import alphavantagewrapper from 'alphavantage-wrapper';
 
 const q = alphavantagewrapper({
-  apiKey: 'zldkz5',
+  apiKey: '<your API key>',
 });
 
 const output = await q.forex.intraday('USD', 'EUR');
@@ -240,3 +240,45 @@ The output of the example will be the following (with `parse` mode set to `trans
 ```
 
 `daily`, `weekly` and `monthly` will be the same but the _timeSeries_ will be aggregated based on the day/week/month.
+
+These methods supports also csv output based on the signature defined above. In that case the wrapper will return you the string as the service without any sort of manipulation. Feel free to use libraries like _CSVTOJSON_ or similar to handle the csv.
+
+Example
+
+```js
+const output = await q.forex.monthly('USD', 'EUR', 'csv');
+```
+
+the output will be a string with the following:
+
+```csv
+timestamp,open,high,low,close
+2019-07-10,0.8794,0.8930,0.8792,0.8887
+2019-06-30,0.8953,0.8967,0.8761,0.8794
+```
+
+## utils
+
+This module provides utilities functions that can be used based at any time. The following function are exposed through the module:
+
+- `cleaner`: a small utility function that will remove the space or non standard chars from your json keys, convert it to a friendly object key and give it back. It's used internally in case of parse mode set to `clean`. It can be used again in case you'd like to use the library without parse mode set to none or in case you'd like to use it for any other functionality
+
+### cleaner
+
+Example
+
+```js
+console.log(
+  q.utils.cleaner({
+    'not nice key': 'value',
+  }),
+);
+```
+
+the output will be a string with the following:
+
+```js
+{
+  notnicekey: 'value';
+}
+```
