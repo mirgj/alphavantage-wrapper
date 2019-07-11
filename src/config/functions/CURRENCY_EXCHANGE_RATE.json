@@ -28,6 +28,14 @@
     {
       "from": "Realtime Currency Exchange Rate|7. Time Zone",
       "to": "timeZone"
+    },
+    {
+      "from": "Realtime Currency Exchange Rate|8. Bid Price",
+      "to": "bidPrice"
+    },
+    {
+      "from": "Realtime Currency Exchange Rate|9. Ask Price",
+      "to": "askPrice"
     }
   ]
 }

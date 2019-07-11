@@ -13,6 +13,8 @@ describe('# responseTransformer', () => {
           '5. Exchange Rate': '44820.00000000',
           '6. Last Refreshed': '2018-10-23 13:01:33',
           '7. Time Zone': 'UTC',
+          '8. Bid Price': '108.28000000',
+          '9. Ask Price': '108.29000000',
         },
       };
 
@@ -36,10 +38,12 @@ describe('# responseTransformer', () => {
         exchangeRate: '44820.00000000',
         lastRefresh: '2018-10-23 13:01:33',
         timeZone: 'UTC',
+        bidPrice: '108.28000000',
+        askPrice: '108.29000000',
       });
     });
 
-    it('it should transform the response into the expected format and apprend the raw response', async () => {
+    it('it should transform the response into the expected format and append the raw response', async () => {
       const response = {
         'Realtime Currency Exchange Rate': {
           '1. From_Currency Code': 'BTC',
