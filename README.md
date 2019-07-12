@@ -27,13 +27,14 @@ After the Initialisation you'll get the following object with these properties:
 - `crypto: object`: Provides a set of functions for the crypto market
 - `forex: object`: Provides a set of functions for the forex market
 - `utils: object`: Provides some utils to be used anytime
+- `sectors: function`: Provides the sectors statistics
 - (TODO: more to add)
 
 Follow the documentation to know more about the single functionalities
 
 ## exchangeRate
 
-`exchangeRate` to be used to get the exchange rate from currency A to currency B. Crypto currencies are also supported. The following example shows the conversion rate from BTC (bitcoin) to USD.
+The `exchangeRate` is used to get the exchange rate from currency A to currency B. Crypto currencies are also supported. The following example shows the conversion rate from BTC (bitcoin) to USD.
 
 Example:
 
@@ -280,5 +281,155 @@ the output will be a string with the following:
 ```js
 {
   notnicekey: 'value';
+}
+```
+
+## sectors
+
+The `sectors` will be used to get the statistics about the sectors and their performance over the time as per API spec.
+
+```js
+import alphavantagewrapper from 'alphavantage-wrapper';
+
+const q = alphavantagewrapper({
+  apiKey: '<your API key>',
+});
+
+const output = await q.sectors();
+```
+
+The output of the example will be the following (with `parse` mode set to `transform`):
+
+```js
+{
+   "description":"US Sector Performance (realtime & historical)",
+   "lastRefreshed":"10:37 AM ET 07/12/2019",
+   "realTimePerformance":{
+      "communicationServices":"-0.02%",
+      "consumerDiscretionary":"0.74%",
+      "consumerStaples":"0.19%",
+      "energy":"0.62%",
+      "financials":"0.06%",
+      "healthCare":"-0.97%",
+      "industrials":"1.13%",
+      "informationTechnology":"0.27%",
+      "materials":"0.79%",
+      "realEstate":"-0.44%",
+      "utilities":"-0.79%"
+   },
+   "oneDayPerformance":{
+      "communicationServices":"-0.09%",
+      "consumerDiscretionary":"0.16%",
+      "consumerStaples":"0.25%",
+      "energy":"0.18%",
+      "financials":"0.60%",
+      "healthCare":"0.02%",
+      "industrials":"0.71%",
+      "informationTechnology":"0.34%",
+      "materials":"0.43%",
+      "realEstate":"-1.21%",
+      "utilities":"0.04%"
+   },
+   "fiveDaysPerformance":{
+      "communicationServices":"0.74%",
+      "consumerDiscretionary":"1.19%",
+      "consumerStaples":"0.07%",
+      "energy":"1.89%",
+      "financials":"0.23%",
+      "healthCare":"-0.98%",
+      "industrials":"-1.05%",
+      "informationTechnology":"0.53%",
+      "materials":"-2.34%",
+      "realEstate":"-0.37%",
+      "utilities":"0.36%"
+   },
+   "oneMonthPerformance":{
+      "communicationServices":"6.87%",
+      "consumerDiscretionary":"5.66%",
+      "consumerStaples":"2.42%",
+      "energy":"5.31%",
+      "financials":"3.20%",
+      "healthCare":"2.71%",
+      "industrials":"1.96%",
+      "informationTechnology":"4.94%",
+      "materials":"0.73%",
+      "realEstate":"1.58%",
+      "utilities":"2.96%"
+   },
+   "threeMonthsPerformance":{
+      "communicationServices":"4.34%",
+      "consumerDiscretionary":"4.89%",
+      "consumerStaples":"6.29%",
+      "energy":"-4.69%",
+      "financials":"6.25%",
+      "healthCare":"1.88%",
+      "industrials":"1.85%",
+      "informationTechnology":"5.47%",
+      "materials":"0.85%",
+      "realEstate":"3.39%",
+      "utilities":"5.92%"
+   },
+   "oneYearPerformance":{
+      "communicationServices":"12.45%",
+      "consumerDiscretionary":"9.57%",
+      "consumerStaples":"13.51%",
+      "energy":"-16.95%",
+      "financials":"3.52%",
+      "healthCare":"7.55%",
+      "industrials":"4.75%",
+      "informationTechnology":"12.17%",
+      "materials":"-2.74%",
+      "realEstate":"14.36%",
+      "utilities":"17.32%"
+   },
+   "yearToDatePerformance":{
+      "communicationServices":"22.25%",
+      "consumerDiscretionary":"24.82%",
+      "consumerStaples":"17.62%",
+      "energy":"12.04%",
+      "financials":"17.99%",
+      "healthCare":"8.10%",
+      "industrials":"19.69%",
+      "informationTechnology":"29.86%",
+      "materials":"14.44%",
+      "realEstate":"21.61%",
+      "utilities":"15.23%"
+   },
+   "threeYearsPerformance":{
+      "communicationServices":"-6.68%",
+      "consumerDiscretionary":"52.38%",
+      "consumerStaples":"7.47%",
+      "energy":"-6.66%",
+      "financials":"51.13%",
+      "healthCare":"27.20%",
+      "industrials":"30.34%",
+      "informationTechnology":"94.58%",
+      "materials":"23.13%",
+      "utilities":"15.99%"
+   },
+   "fiveYearsPerformance":{
+      "communicationServices":"5.94%",
+      "consumerDiscretionary":"83.09%",
+      "consumerStaples":"31.97%",
+      "energy":"-34.26%",
+      "financials":"53.00%",
+      "healthCare":"52.04%",
+      "industrials":"40.12%",
+      "informationTechnology":"121.73%",
+      "materials":"15.79%",
+      "utilities":"41.18%"
+   },
+   "tenYearsPerformance":{
+      "communicationServices":"73.48%",
+      "consumerDiscretionary":"461.42%",
+      "consumerStaples":"158.62%",
+      "energy":"36.67%",
+      "financials":"212.80%",
+      "healthCare":"262.58%",
+      "industrials":"258.60%",
+      "informationTechnology":"409.33%",
+      "materials":"148.31%",
+      "utilities":"126.03%"
+   }
 }
 ```
