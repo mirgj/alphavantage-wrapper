@@ -2,7 +2,7 @@ import requestCreator from '../utils/requestCreator';
 import validators from '../validators/index';
 import * as constants from '../constants/index';
 
-const baseRequest = config => async (symbol, market, funct) => {
+const baseRequest = config => (symbol, market, funct) => {
   const validate = !!config.validate || false;
 
   if (validate) {
@@ -28,4 +28,4 @@ const digitalCurrency = config => ({
     baseRequest(config)(symbol, market, constants.DIGITAL_CURRENCY_MONTHLY),
 });
 
-export default config => digitalCurrency(config);
+export default digitalCurrency;

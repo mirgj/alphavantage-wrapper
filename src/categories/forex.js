@@ -2,14 +2,7 @@ import requestCreator from '../utils/requestCreator';
 import validators from '../validators/index';
 import * as constants from '../constants/index';
 
-const execute = config => async (
-  from,
-  to,
-  interval,
-  outputSize,
-  dataType,
-  fn,
-) => {
+const execute = config => (from, to, interval, outputSize, dataType, fn) => {
   const validate = !!config.validate || false;
 
   if (validate) {
@@ -58,4 +51,4 @@ const forex = config => ({
     execute(config)(from, to, null, null, dataType, constants.FX_MONTHLY),
 });
 
-export default config => forex(config);
+export default forex;

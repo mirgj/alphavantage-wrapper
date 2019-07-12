@@ -2,7 +2,7 @@ import requestCreator from '../utils/requestCreator';
 import validators from '../validators/index';
 import * as constants from '../constants/index';
 
-const exchange = config => async (from, to) => {
+const exchange = config => (from, to) => {
   const validate = !!config.validate || false;
 
   if (validate) {
@@ -19,4 +19,4 @@ const exchange = config => async (from, to) => {
   return requestCreator(config, query);
 };
 
-export default config => exchange(config);
+export default exchange;
