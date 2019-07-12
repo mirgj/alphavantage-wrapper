@@ -1,0 +1,453 @@
+{
+  "validity": "Meta Data",
+  "propertyMappings": [
+    {
+      "from": "Meta Data|Information",
+      "to": "description"
+    },
+    {
+      "from": "Meta Data|Last Refreshed",
+      "to": "lastRefreshed"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Industrials",
+      "to": "realTimePerformance|industrials"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Materials",
+      "to": "realTimePerformance|materials"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Consumer Discretionary",
+      "to": "realTimePerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Energy",
+      "to": "realTimePerformance|energy"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Information Technology",
+      "to": "realTimePerformance|informationTechnology"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Consumer Staples",
+      "to": "realTimePerformance|consumerStaples"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Financials",
+      "to": "realTimePerformance|financials"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Communication Services",
+      "to": "realTimePerformance|communicationServices"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Real Estate",
+      "to": "realTimePerformance|realEstate"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Utilities",
+      "to": "realTimePerformance|utilities"
+    },
+    {
+      "from": "Rank A: Real-Time Performance|Health Care",
+      "to": "realTimePerformance|healthCare"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Industrials",
+      "to": "oneDayPerformance|industrials"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Materials",
+      "to": "oneDayPerformance|materials"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Consumer Discretionary",
+      "to": "oneDayPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Energy",
+      "to": "oneDayPerformance|energy"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Information Technology",
+      "to": "oneDayPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Consumer Staples",
+      "to": "oneDayPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Financials",
+      "to": "oneDayPerformance|financials"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Communication Services",
+      "to": "oneDayPerformance|communicationServices"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Real Estate",
+      "to": "oneDayPerformance|realEstate"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Utilities",
+      "to": "oneDayPerformance|utilities"
+    },
+    {
+      "from": "Rank B: 1 Day Performance|Health Care",
+      "to": "oneDayPerformance|healthCare"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Industrials",
+      "to": "fiveDaysPerformance|industrials"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Materials",
+      "to": "fiveDaysPerformance|materials"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Consumer Discretionary",
+      "to": "fiveDaysPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Energy",
+      "to": "fiveDaysPerformance|energy"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Information Technology",
+      "to": "fiveDaysPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Consumer Staples",
+      "to": "fiveDaysPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Financials",
+      "to": "fiveDaysPerformance|financials"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Communication Services",
+      "to": "fiveDaysPerformance|communicationServices"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Real Estate",
+      "to": "fiveDaysPerformance|realEstate"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Utilities",
+      "to": "fiveDaysPerformance|utilities"
+    },
+    {
+      "from": "Rank C: 5 Day Performance|Health Care",
+      "to": "fiveDaysPerformance|healthCare"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Industrials",
+      "to": "oneMonthPerformance|industrials"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Materials",
+      "to": "oneMonthPerformance|materials"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Consumer Discretionary",
+      "to": "oneMonthPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Energy",
+      "to": "oneMonthPerformance|energy"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Information Technology",
+      "to": "oneMonthPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Consumer Staples",
+      "to": "oneMonthPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Financials",
+      "to": "oneMonthPerformance|financials"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Communication Services",
+      "to": "oneMonthPerformance|communicationServices"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Real Estate",
+      "to": "oneMonthPerformance|realEstate"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Utilities",
+      "to": "oneMonthPerformance|utilities"
+    },
+    {
+      "from": "Rank D: 1 Month Performance|Health Care",
+      "to": "oneMonthPerformance|healthCare"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Industrials",
+      "to": "threeMonthsPerformance|industrials"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Materials",
+      "to": "threeMonthsPerformance|materials"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Consumer Discretionary",
+      "to": "threeMonthsPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Energy",
+      "to": "threeMonthsPerformance|energy"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Information Technology",
+      "to": "threeMonthsPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Consumer Staples",
+      "to": "threeMonthsPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Financials",
+      "to": "threeMonthsPerformance|financials"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Communication Services",
+      "to": "threeMonthsPerformance|communicationServices"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Real Estate",
+      "to": "threeMonthsPerformance|realEstate"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Utilities",
+      "to": "threeMonthsPerformance|utilities"
+    },
+    {
+      "from": "Rank E: 3 Month Performance|Health Care",
+      "to": "threeMonthsPerformance|healthCare"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Industrials",
+      "to": "yearToDatePerformance|industrials"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Materials",
+      "to": "yearToDatePerformance|materials"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Consumer Discretionary",
+      "to": "yearToDatePerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Energy",
+      "to": "yearToDatePerformance|energy"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Information Technology",
+      "to": "yearToDatePerformance|informationTechnology"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Consumer Staples",
+      "to": "yearToDatePerformance|consumerStaples"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Financials",
+      "to": "yearToDatePerformance|financials"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Communication Services",
+      "to": "yearToDatePerformance|communicationServices"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Real Estate",
+      "to": "yearToDatePerformance|realEstate"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Utilities",
+      "to": "yearToDatePerformance|utilities"
+    },
+    {
+      "from": "Rank F: Year-to-Date (YTD) Performance|Health Care",
+      "to": "yearToDatePerformance|healthCare"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Industrials",
+      "to": "oneYearPerformance|industrials"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Materials",
+      "to": "oneYearPerformance|materials"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Consumer Discretionary",
+      "to": "oneYearPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Energy",
+      "to": "oneYearPerformance|energy"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Information Technology",
+      "to": "oneYearPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Consumer Staples",
+      "to": "oneYearPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Financials",
+      "to": "oneYearPerformance|financials"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Communication Services",
+      "to": "oneYearPerformance|communicationServices"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Real Estate",
+      "to": "oneYearPerformance|realEstate"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Utilities",
+      "to": "oneYearPerformance|utilities"
+    },
+    {
+      "from": "Rank G: 1 Year Performance|Health Care",
+      "to": "oneYearPerformance|healthCare"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Industrials",
+      "to": "threeYearsPerformance|industrials"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Materials",
+      "to": "threeYearsPerformance|materials"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Consumer Discretionary",
+      "to": "threeYearsPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Energy",
+      "to": "threeYearsPerformance|energy"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Information Technology",
+      "to": "threeYearsPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Consumer Staples",
+      "to": "threeYearsPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Financials",
+      "to": "threeYearsPerformance|financials"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Communication Services",
+      "to": "threeYearsPerformance|communicationServices"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Real Estate",
+      "to": "threeYearsPerformance|realEstate"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Utilities",
+      "to": "threeYearsPerformance|utilities"
+    },
+    {
+      "from": "Rank H: 3 Year Performance|Health Care",
+      "to": "threeYearsPerformance|healthCare"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Industrials",
+      "to": "fiveYearsPerformance|industrials"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Materials",
+      "to": "fiveYearsPerformance|materials"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Consumer Discretionary",
+      "to": "fiveYearsPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Energy",
+      "to": "fiveYearsPerformance|energy"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Information Technology",
+      "to": "fiveYearsPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Consumer Staples",
+      "to": "fiveYearsPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Financials",
+      "to": "fiveYearsPerformance|financials"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Communication Services",
+      "to": "fiveYearsPerformance|communicationServices"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Real Estate",
+      "to": "fiveYearsPerformance|realEstate"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Utilities",
+      "to": "fiveYearsPerformance|utilities"
+    },
+    {
+      "from": "Rank I: 5 Year Performance|Health Care",
+      "to": "fiveYearsPerformance|healthCare"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Industrials",
+      "to": "tenYearsPerformance|industrials"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Materials",
+      "to": "tenYearsPerformance|materials"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Consumer Discretionary",
+      "to": "tenYearsPerformance|consumerDiscretionary"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Energy",
+      "to": "tenYearsPerformance|energy"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Information Technology",
+      "to": "tenYearsPerformance|informationTechnology"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Consumer Staples",
+      "to": "tenYearsPerformance|consumerStaples"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Financials",
+      "to": "tenYearsPerformance|financials"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Communication Services",
+      "to": "tenYearsPerformance|communicationServices"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Real Estate",
+      "to": "tenYearsPerformance|realEstate"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Utilities",
+      "to": "tenYearsPerformance|utilities"
+    },
+    {
+      "from": "Rank J: 10 Year Performance|Health Care",
+      "to": "tenYearsPerformance|healthCare"
+    }
+  ]
+}

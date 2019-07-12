@@ -1,4 +1,4 @@
-import exchangeRate from './exchangeRate';
+import sector from './sector';
 import requestCreator from '../utils/requestCreator';
 import * as constants from '../constants/index';
 
@@ -13,16 +13,14 @@ describe('# exchangeRate', () => {
       url: 'a-mocked-url',
     };
   });
-  afterEach(() => {});
+
   it('it should call the exchange function correctly', async () => {
-    const fn = exchangeRate(config);
-    const result = await fn('USD', 'EUR');
+    const fn = sector(config);
+    const result = await fn();
 
     expect(result).toEqual('an-output');
     expect(requestCreator).toHaveBeenCalledWith(config, {
-      function: constants.CURRENCY_EXCHANGE_RATE,
-      from_currency: 'USD',
-      to_currency: 'EUR',
+      function: constants.SECTOR,
     });
   });
 });

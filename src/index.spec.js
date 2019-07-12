@@ -17,6 +17,7 @@ describe('# index', () => {
       monthly: expect.any(Function),
     });
     expect(res.exchangeRate).toEqual(expect.any(Function));
+    expect(res.sectors).toEqual(expect.any(Function));
     expect(res.utils).toEqual({
       cleaner: expect.any(Function),
     });
