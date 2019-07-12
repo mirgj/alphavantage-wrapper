@@ -23,7 +23,7 @@
     },
     {
       "from": "Realtime Currency Exchange Rate|6. Last Refreshed",
-      "to": "lastRefresh"
+      "to": "lastRefreshed"
     },
     {
       "from": "Realtime Currency Exchange Rate|7. Time Zone",
