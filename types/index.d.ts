@@ -67,7 +67,7 @@ interface IExchangeRateResult {
   from: ICurrency;
   to: ICurrency;
   exchangeRate: string | number;
-  lastRefresh: string | Date;
+  lastRefreshed: string | Date;
   timeZone: string;
 }
 
@@ -75,7 +75,7 @@ interface ICryptoResult {
   description: string;
   currency: ICurrency;
   exchange: ICurrency;
-  lastRefresh: string | Date;
+  lastRefreshed: string | Date;
   timeZone: string;
   timeSeries: ICyptoTimeSeries;
 }
@@ -85,9 +85,38 @@ interface IForexResult {
   from: ICurrency;
   to: ICurrency;
   outputType: OutputSizeType;
-  lastRefresh: string | Date;
+  lastRefreshed: string | Date;
   timeZone: string;
   timeSeries: IForexTimeSeries;
+}
+
+interface ISectorPerformance {
+  communicationServices: string | number;
+  consumerDiscretionary: string | number;
+  consumerStaples: string | number;
+  energy: string | number;
+  financials: string | number;
+  healthCare: string | number;
+  industrials: string | number;
+  informationTechnology: string | number;
+  materials: string | number;
+  realEstate: string | number;
+  utilities: string | number;
+}
+
+interface ISectorResult {
+  description: string;
+  lastRefreshed: string | Date;
+  realTimePerformance: ISectorPerformance;
+  oneDayPerformance: ISectorPerformance;
+  fiveDaysPerformance: ISectorPerformance;
+  oneMonthPerformance: ISectorPerformance;
+  threeMonthsPerformance: ISectorPerformance;
+  yearToDatePerformance: ISectorPerformance;
+  oneYearPerformance: ISectorPerformance;
+  threeYearsPerformance: ISectorPerformance;
+  fiveYearsPerformance: ISectorPerformance;
+  tenYearsPerformance: ISectorPerformance;
 }
 
 interface ICrypto {
@@ -130,6 +159,7 @@ interface IResult {
   forex: IForex;
   utils: IUtils;
   exchangeRate(from_currency: string, to_currency: string): IExchangeRateResult;
+  sectors(): ISectorResult;
 }
 
 declare function init(config: IConfig): IResult;
