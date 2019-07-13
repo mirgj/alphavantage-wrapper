@@ -26,8 +26,8 @@ After the Initialisation you'll get the following object with these properties:
 - `exchangeRate: function`: Provides the exchange rate from currency to currecy (or also crypto currency to FIAT or crypto to crypto)
 - `crypto: object`: Provides a set of functions for the crypto market
 - `forex: object`: Provides a set of functions for the forex market
-- `utils: object`: Provides some utils to be used anytime
 - `sectors: function`: Provides the sectors statistics
+- `utils: object`: Provides some utils to be used anytime
 - (TODO: more to add)
 
 Follow the documentation to know more about the single functionalities
@@ -258,32 +258,6 @@ timestamp,open,high,low,close
 2019-06-30,0.8953,0.8967,0.8761,0.8794
 ```
 
-## utils
-
-This module provides utilities functions that can be used based at any time. The following function are exposed through the module:
-
-- `cleaner`: a small utility function that will remove the space or non standard chars from your json keys, convert it to a friendly object key and give it back. It's used internally in case of parse mode set to `clean`. It can be used again in case you'd like to use the library without parse mode set to none or in case you'd like to use it for any other functionality
-
-### cleaner
-
-Example
-
-```js
-console.log(
-  q.utils.cleaner({
-    'not nice key': 'value',
-  }),
-);
-```
-
-the output will be a string with the following:
-
-```js
-{
-  notnicekey: 'value';
-}
-```
-
 ## sectors
 
 The `sectors` will be used to get the statistics about the sectors and their performance over the time as per API spec.
@@ -431,5 +405,31 @@ The output of the example will be the following (with `parse` mode set to `trans
       "materials":"148.31%",
       "utilities":"126.03%"
    }
+}
+```
+
+## utils
+
+This module provides utilities functions that can be used based at any time. The following function are exposed through the module:
+
+- `cleaner`: a small utility function that will remove the space or non standard chars from your json keys, convert it to a friendly object key and give it back. It's used internally in case of parse mode set to `clean`. It can be used again in case you'd like to use the library without parse mode set to none or in case you'd like to use it for any other functionality
+
+### cleaner
+
+Example
+
+```js
+console.log(
+  q.utils.cleaner({
+    'not nice key': 'value',
+  }),
+);
+```
+
+the output will be a string with the following:
+
+```js
+{
+  notnicekey: 'value';
 }
 ```
