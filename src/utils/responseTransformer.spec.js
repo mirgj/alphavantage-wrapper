@@ -922,4 +922,43 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## GLOBAL_QUOTE', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Global Quote': {
+          '01. symbol': 'MSFT',
+          '02. open': '138.8500',
+          '03. high': '139.1300',
+          '04. low': '138.0100',
+          '05. price': '138.9000',
+          '06. volume': '17725458',
+          '07. latest trading day': '2019-07-12',
+          '08. previous close': '138.4000',
+          '09. change': '0.5000',
+          '10. change percent': '0.3613%',
+        },
+      };
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.GLOBAL_QUOTE,
+      );
+
+      expect(res).toEqual({
+        change: '0.5000',
+        changePercent: '0.3613%',
+        high: '139.1300',
+        latestTradingDay: '2019-07-12',
+        low: '138.0100',
+        open: '138.8500',
+        previousClose: '138.4000',
+        price: '138.9000',
+        symbol: 'MSFT',
+        volume: '17725458',
+      });
+    });
+  });
 });
