@@ -36,7 +36,7 @@ describe('# responseTransformer', () => {
           name: 'Chinese Yuan',
         },
         exchangeRate: '44820.00000000',
-        lastRefresh: '2018-10-23 13:01:33',
+        lastRefreshed: '2018-10-23 13:01:33',
         timeZone: 'UTC',
         bidPrice: '108.28000000',
         askPrice: '108.29000000',
@@ -76,7 +76,7 @@ describe('# responseTransformer', () => {
           name: 'Chinese Yuan',
         },
         exchangeRate: '44820.00000000',
-        lastRefresh: '2018-10-23 13:01:33',
+        lastRefreshed: '2018-10-23 13:01:33',
         timeZone: 'UTC',
       });
     });
