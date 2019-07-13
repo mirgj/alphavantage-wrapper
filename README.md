@@ -271,6 +271,37 @@ These are the relative parameters with the specific meaning (defined also in the
 - `symbol`: Stock symbol value (eg: MSFT)
 - `dataType`: Accepts `json` or `csv` and will affect the output of the API call (default: **json**)
 
+### quote
+
+Example:
+
+```js
+import alphavantagewrapper from 'alphavantage-wrapper';
+
+const q = alphavantagewrapper({
+  apiKey: '<your API key>',
+});
+
+const output = await q.stock.quote('MSFT');
+```
+
+The output of the example will be the following (with `parse` mode set to `transform`):
+
+```js
+{
+   "symbol":"MSFT",
+   "change":"0.5000",
+   "changePercent":"0.3613%",
+   "high":"139.1300",
+   "latestTradingDay":"2019-07-12",
+   "low":"138.0100",
+   "open":"138.8500",
+   "previousClose":"138.4000",
+   "price":"138.9000",
+   "volume":"17725458"
+}
+```
+
 ## sectors
 
 The `sectors` will be used to get the statistics about the sectors and their performance over the time as per API spec.
