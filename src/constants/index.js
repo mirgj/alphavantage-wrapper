@@ -7,5 +7,7 @@ export const FX_DAILY = 'FX_DAILY';
 export const FX_WEEKLY = 'FX_WEEKLY';
 export const FX_MONTHLY = 'FX_MONTHLY';
 export const SECTOR = 'SECTOR';
+export const GLOBAL_QUOTE = 'GLOBAL_QUOTE';
+export const SYMBOL_SEARCH = 'SYMBOL_SEARCH';
 export const DYNAMIC = '[dynamic]';
 export const DYNAMIC_FORMAT = '[dynamicFormat]';

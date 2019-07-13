@@ -1,0 +1,45 @@
+{
+  "validity": "Global Quote",
+  "propertyMappings": [
+    {
+      "from": "Global Quote|01. symbol",
+      "to": "symbol"
+    },
+    {
+      "from": "Global Quote|02. open",
+      "to": "open"
+    },
+    {
+      "from": "Global Quote|03. high",
+      "to": "high"
+    },
+    {
+      "from": "Global Quote|04. low",
+      "to": "low"
+    },
+    {
+      "from": "Global Quote|05. price",
+      "to": "price"
+    },
+    {
+      "from": "Global Quote|06. volume",
+      "to": "volume"
+    },
+    {
+      "from": "Global Quote|07. latest trading day",
+      "to": "latestTradingDay"
+    },
+    {
+      "from": "Global Quote|08. previous close",
+      "to": "previousClose"
+    },
+    {
+      "from": "Global Quote|09. change",
+      "to": "change"
+    },
+    {
+      "from": "Global Quote|10. change percent",
+      "to": "changePercent"
+    }
+  ]
+}
