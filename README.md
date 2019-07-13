@@ -26,6 +26,7 @@ After the Initialisation you'll get the following object with these properties:
 - `exchangeRate: function`: Provides the exchange rate from currency to currecy (or also crypto currency to FIAT or crypto to crypto)
 - `crypto: object`: Provides a set of functions for the crypto market
 - `forex: object`: Provides a set of functions for the forex market
+- `stock: object`: Provides a set of functions for the stock market
 - `sectors: function`: Provides the sectors statistics
 - `utils: object`: Provides some utils to be used anytime
 - (TODO: more to add)
@@ -257,6 +258,18 @@ timestamp,open,high,low,close
 2019-07-10,0.8794,0.8930,0.8792,0.8887
 2019-06-30,0.8953,0.8967,0.8761,0.8794
 ```
+
+## stock
+
+This module provide functions related to the **stock** market. The following function are exposed through the module:
+
+- `quote(symbol: string, dataType?: DataTypeType)`: provides the quote rates for the given symbol/ticker
+- (more to add)
+
+These are the relative parameters with the specific meaning (defined also in the service docs):
+
+- `symbol`: Stock symbol value (eg: MSFT)
+- `dataType`: Accepts `json` or `csv` and will affect the output of the API call (default: **json**)
 
 ## sectors
 
