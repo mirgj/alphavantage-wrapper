@@ -150,6 +150,23 @@ interface IForex {
   ): IForexResult;
 }
 
+interface IStockQuoteResult {
+  change: string | number;
+  changePercent: string | number;
+  high: string | number;
+  latestTradingDay: string | Date;
+  low: string | number;
+  open: string | number;
+  previousClose: string | number;
+  price: string | number;
+  symbol: string;
+  volume: string | number;
+}
+
+interface IStock {
+  quote(symbol: string, dataType?: DataTypeType): IStockQuoteResult;
+}
+
 interface IUtils {
   cleaner(obj: object): object;
 }
@@ -157,6 +174,7 @@ interface IUtils {
 interface IResult {
   crypto: ICrypto;
   forex: IForex;
+  stock: IStock;
   utils: IUtils;
   exchangeRate(from_currency: string, to_currency: string): IExchangeRateResult;
   sectors(): ISectorResult;
