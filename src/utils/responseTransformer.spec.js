@@ -1252,4 +1252,53 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## TIME_SERIES_MONTHLY_ADJUSTED', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Monthly Adjusted Prices and Volumes',
+          '2. Symbol': 'MSFT',
+          '3. Last Refreshed': '2019-07-12',
+          '4. Time Zone': 'US/Eastern',
+        },
+        'Monthly Adjusted Time Series': {
+          '2019-07-12': {
+            '1. open': '136.6300',
+            '2. high': '139.2200',
+            '3. low': '134.9700',
+            '4. close': '138.9000',
+            '5. adjusted close': '138.9000',
+            '6. volume': '171811885',
+            '7. dividend amount': '0.0000',
+          },
+        },
+      };
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.TIME_SERIES_MONTHLY_ADJUSTED,
+      );
+
+      expect(res).toEqual({
+        description: 'Monthly Adjusted Prices and Volumes',
+        symbol: 'MSFT',
+        lastRefreshed: '2019-07-12',
+        timeZone: 'US/Eastern',
+        timeSeries: {
+          '2019-07-12': {
+            open: '136.6300',
+            high: '139.2200',
+            low: '134.9700',
+            close: '138.9000',
+            adjustedClose: '138.9000',
+            volume: '171811885',
+            dividendAmount: '0.0000',
+          },
+        },
+      });
+    });
+  });
 });

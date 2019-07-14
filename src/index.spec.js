@@ -18,6 +18,7 @@ describe('# index', () => {
       weekly: expect.any(Function),
       weekly_adjusted: expect.any(Function),
       monthly: expect.any(Function),
+      monthly_adjusted: expect.any(Function),
       // search: expect.any(Function),
     });
     expect(res.forex).toEqual({

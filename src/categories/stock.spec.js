@@ -28,6 +28,7 @@ describe('# stock', () => {
     expect(fn.weekly).toEqual(expect.any(Function));
     expect(fn.weekly_adjusted).toEqual(expect.any(Function));
     expect(fn.monthly).toEqual(expect.any(Function));
+    expect(fn.monthly_adjusted).toEqual(expect.any(Function));
     // expect(fn.search).toEqual(expect.any(Function));
   });
 
