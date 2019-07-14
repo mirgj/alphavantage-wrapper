@@ -263,13 +263,55 @@ timestamp,open,high,low,close
 
 This module provide functions related to the **stock** market. The following function are exposed through the module:
 
+- `intraday(symbol: string, interval?: IntervalType, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the intraday stock value based on the given symbol
 - `quote(symbol: string, dataType?: DataTypeType)`: provides the quote rates for the given symbol/ticker
 - (more to add)
 
 These are the relative parameters with the specific meaning (defined also in the service docs):
 
 - `symbol`: Stock symbol value (eg: MSFT)
+- `interval`: Time interval between two consecutive data points in the time series. The following values are supported: `1min`, `5min`, `15min`, `30min`, `60min` (default: **5min**)
+- `outputSize`: Accepts `compact` or `full` and will affect the number of output; compact will returns only the last 100 data points (default: **compact**)
 - `dataType`: Accepts `json` or `csv` and will affect the output of the API call (default: **json**)
+
+### intraday, daily, weekly, monthly
+
+Example:
+
+```js
+import alphavantagewrapper from 'alphavantage-wrapper';
+
+const q = alphavantagewrapper({
+  apiKey: '<your API key>',
+});
+
+const output = await q.stock.intraday('MSFT');
+```
+
+The output of the example will be the following (with `parse` mode set to `transform`):
+
+```js
+{
+   "description":"Intraday (5min) open, high, low, close prices and volume",
+   "symbol":"MSFT",
+   "interval":"5min",
+   "lastRefreshed":"2019-07-12 16:00:00",
+   "timeZone":"US/Eastern",
+   "outputType":"Compact",
+   "timeSeries":{
+      "2019-07-12 16:00:00":{
+         "close":"138.8900",
+         "high":"138.9800",
+         "low":"138.6800",
+         "open":"138.6800",
+         "volume":"1736475"
+      }
+      // many others based on the interval value
+   }
+}
+```
+
+This output will be the same for the some of the other methods (daily, weekly, monthly) just the timeSeries data points will be related to the required frequency.
 
 ### quote
 
