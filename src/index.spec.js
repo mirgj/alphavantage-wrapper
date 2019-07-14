@@ -14,6 +14,7 @@ describe('# index', () => {
       quote: expect.any(Function),
       intraday: expect.any(Function),
       daily: expect.any(Function),
+      daily_adjusted: expect.any(Function),
       weekly: expect.any(Function),
       monthly: expect.any(Function),
       // search: expect.any(Function),

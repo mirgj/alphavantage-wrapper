@@ -24,6 +24,7 @@ describe('# stock', () => {
     expect(fn.quote).toEqual(expect.any(Function));
     expect(fn.intraday).toEqual(expect.any(Function));
     expect(fn.daily).toEqual(expect.any(Function));
+    expect(fn.daily_adjusted).toEqual(expect.any(Function));
     expect(fn.weekly).toEqual(expect.any(Function));
     expect(fn.monthly).toEqual(expect.any(Function));
     // expect(fn.search).toEqual(expect.any(Function));
@@ -101,6 +102,32 @@ describe('# stock', () => {
     expect(result).toEqual('an-output');
     expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.TIME_SERIES_DAILY,
+      symbol: 'MSFT',
+      outputsize: 'full',
+      datatype: 'csv',
+    });
+  });
+
+  it('should call the daily adjusted function correctly with default parameters', async () => {
+    const fn = stock(config);
+    const result = await fn.daily_adjusted('MSFT');
+
+    expect(result).toEqual('an-output');
+    expect(requestCreator).toHaveBeenCalledWith(config, {
+      function: constants.TIME_SERIES_DAILY_ADJUSTED,
+      symbol: 'MSFT',
+      outputsize: 'compact',
+      datatype: 'json',
+    });
+  });
+
+  it('should call the daily adjusted function correctly with custom parameters', async () => {
+    const fn = stock(config);
+    const result = await fn.daily_adjusted('MSFT', 'full', 'csv');
+
+    expect(result).toEqual('an-output');
+    expect(requestCreator).toHaveBeenCalledWith(config, {
+      function: constants.TIME_SERIES_DAILY_ADJUSTED,
       symbol: 'MSFT',
       outputsize: 'full',
       datatype: 'csv',

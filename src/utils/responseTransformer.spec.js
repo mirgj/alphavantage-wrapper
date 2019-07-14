@@ -1150,4 +1150,57 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## TIME_SERIES_DAILY_ADJUSTED', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Daily Time Series with Splits and Dividend Events',
+          '2. Symbol': 'MSFT',
+          '3. Last Refreshed': '2019-07-12',
+          '4. Output Size': 'Compact',
+          '5. Time Zone': 'US/Eastern',
+        },
+        'Time Series (Daily)': {
+          '2019-07-12': {
+            '1. open': '138.8500',
+            '2. high': '139.1300',
+            '3. low': '138.0099',
+            '4. close': '138.9000',
+            '5. adjusted close': '138.9000',
+            '6. volume': '18936832',
+            '7. dividend amount': '0.0000',
+            '8. split coefficient': '1.0000',
+          },
+        },
+      };
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.TIME_SERIES_DAILY_ADJUSTED,
+      );
+
+      expect(res).toEqual({
+        description: 'Daily Time Series with Splits and Dividend Events',
+        symbol: 'MSFT',
+        lastRefreshed: '2019-07-12',
+        timeZone: 'US/Eastern',
+        outputType: 'Compact',
+        timeSeries: {
+          '2019-07-12': {
+            close: '138.9000',
+            adjustedClose: '138.9000',
+            high: '139.1300',
+            low: '138.0099',
+            open: '138.8500',
+            volume: '18936832',
+            dividendAmount: '0.0000',
+            splitCoefficient: '1.0000',
+          },
+        },
+      });
+    });
+  });
 });
