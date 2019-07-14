@@ -9,6 +9,7 @@ export const FX_MONTHLY = 'FX_MONTHLY';
 export const SECTOR = 'SECTOR';
 export const GLOBAL_QUOTE = 'GLOBAL_QUOTE';
 export const TIME_SERIES_INTRADAY = 'TIME_SERIES_INTRADAY';
+export const TIME_SERIES_DAILY = 'TIME_SERIES_DAILY';
 export const SYMBOL_SEARCH = 'SYMBOL_SEARCH';
 export const DYNAMIC = '[dynamic]';
 export const DYNAMIC_FORMAT = '[dynamicFormat]';

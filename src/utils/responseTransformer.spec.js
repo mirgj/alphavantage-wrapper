@@ -1011,4 +1011,51 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## TIME_SERIES_DAILY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information': 'Daily Prices (open, high, low, close) and Volumes',
+          '2. Symbol': 'MSFT',
+          '3. Last Refreshed': '2019-07-12',
+          '4. Output Size': 'Compact',
+          '5. Time Zone': 'US/Eastern',
+        },
+        'Time Series (Daily)': {
+          '2019-07-12': {
+            '1. open': '138.8500',
+            '2. high': '139.1300',
+            '3. low': '138.0099',
+            '4. close': '138.9000',
+            '5. volume': '18936832',
+          },
+        },
+      };
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.TIME_SERIES_DAILY,
+      );
+
+      expect(res).toEqual({
+        description: 'Daily Prices (open, high, low, close) and Volumes',
+        symbol: 'MSFT',
+        lastRefreshed: '2019-07-12',
+        timeZone: 'US/Eastern',
+        outputType: 'Compact',
+        timeSeries: {
+          '2019-07-12': {
+            close: '138.9000',
+            high: '139.1300',
+            low: '138.0099',
+            open: '138.8500',
+            volume: '18936832',
+          },
+        },
+      });
+    });
+  });
 });

@@ -13,6 +13,7 @@ describe('# index', () => {
     expect(res.stock).toEqual({
       quote: expect.any(Function),
       intraday: expect.any(Function),
+      daily: expect.any(Function),
       // search: expect.any(Function),
     });
     expect(res.forex).toEqual({
