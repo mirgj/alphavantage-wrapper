@@ -1058,4 +1058,50 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## TIME_SERIES_WEEKLY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information':
+            'Weekly Prices (open, high, low, close) and Volumes',
+          '2. Symbol': 'MSFT',
+          '3. Last Refreshed': '2019-07-12',
+          '4. Time Zone': 'US/Eastern',
+        },
+        'Weekly Time Series': {
+          '2019-07-12': {
+            '1. open': '136.4000',
+            '2. high': '139.2200',
+            '3. low': '135.3701',
+            '4. close': '138.9000',
+            '5. volume': '102149446',
+          },
+        },
+      };
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.TIME_SERIES_WEEKLY,
+      );
+
+      expect(res).toEqual({
+        description: 'Weekly Prices (open, high, low, close) and Volumes',
+        symbol: 'MSFT',
+        lastRefreshed: '2019-07-12',
+        timeZone: 'US/Eastern',
+        timeSeries: {
+          '2019-07-12': {
+            open: '136.4000',
+            high: '139.2200',
+            low: '135.3701',
+            close: '138.9000',
+            volume: '102149446',
+          },
+        },
+      });
+    });
+  });
 });
