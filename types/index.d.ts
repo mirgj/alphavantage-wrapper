@@ -96,7 +96,7 @@ interface IForexResult {
   timeSeries: IForexTimeSeries;
 }
 
-interface IStockResut {
+interface IStockResult {
   description: string;
   symbol: string;
   interval: IntervalType;
@@ -185,12 +185,13 @@ interface IStock {
     interval?: IntervalType,
     outputSize?: OutputSizeType,
     dataType?: DataTypeType,
-  ): IStockResut;
+  ): IStockResult;
   daily(
     symbol: string,
     outputSize?: OutputSizeType,
     dataType?: DataTypeType,
-  ): IStockResut;
+  ): IStockResult;
+  weekly(symbol: string, dataType?: DataTypeType): IStockResult;
   quote(symbol: string, dataType?: DataTypeType): IStockQuoteResult;
 }
 
