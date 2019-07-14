@@ -45,6 +45,12 @@ interface IMarketValue {
 
 interface IStockMarketValue extends IMarketValue, IVolume {}
 
+interface IAdjustedStockMarketValue extends IMarketValue, IVolume {
+  adjustedClose: string | number;
+  dividendAmount: string | number;
+  splitCoefficient: string | number;
+}
+
 interface ICyptoMarketValue extends IMarketValue, IVolume {
   marketCap: string | number;
 }
@@ -67,6 +73,10 @@ interface IForexTimeSeries {
 
 interface IStockTimeSeries {
   [key: string]: IStockMarketValue;
+}
+
+interface IAdjustedStockTimeSeries {
+  [key: string]: IAdjustedStockMarketValue;
 }
 
 interface IExchangeRateResult {
@@ -96,14 +106,21 @@ interface IForexResult {
   timeSeries: IForexTimeSeries;
 }
 
-interface IStockResult {
+interface IBaseStockResult {
   description: string;
   symbol: string;
   interval: IntervalType;
   outputType: OutputSizeType;
   lastRefreshed: string | Date;
   timeZone: string;
+}
+
+interface IStockResult extends IBaseStockResult {
   timeSeries: IStockTimeSeries;
+}
+
+interface IAdjustedStockResult extends IBaseStockResult {
+  timeSeries: IAdjustedStockTimeSeries;
 }
 
 interface ISectorPerformance {
@@ -191,7 +208,13 @@ interface IStock {
     outputSize?: OutputSizeType,
     dataType?: DataTypeType,
   ): IStockResult;
+  daily_adjusted(
+    symbol: string,
+    outputSize?: OutputSizeType,
+    dataType?: DataTypeType,
+  ): IAdjustedStockResult;
   weekly(symbol: string, dataType?: DataTypeType): IStockResult;
+  monthly(symbol: string, dataType?: DataTypeType): IStockResult;
   quote(symbol: string, dataType?: DataTypeType): IStockQuoteResult;
 }
 
