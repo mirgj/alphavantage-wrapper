@@ -265,6 +265,7 @@ This module provide functions related to the **stock** market. The following fun
 
 - `intraday(symbol: string, interval?: IntervalType, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the intraday stock value based on the given symbol
 - `daily(symbol: string, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the daily stock value based on the given symbol
+- `daily_adjusted(symbol: string, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the daily stock value based on the given symbol including splits and dividend
 - `weekly(symbol: string, dataType?: DataTypeType)`: provides the weekly stock value based on the given symbol
 - `quote(symbol: string, dataType?: DataTypeType)`: provides the quote rates for the given symbol/ticker
 - (more to add)
@@ -314,6 +315,45 @@ The output of the example will be the following (with `parse` mode set to `trans
 ```
 
 This output will be the same for the some of the other methods (daily, weekly, monthly) just the timeSeries data points will be related to the required frequency.
+
+### daily_adjusted, weekly_adjusted, monthly_adjusted
+
+Example:
+
+```js
+import alphavantagewrapper from 'alphavantage-wrapper';
+
+const q = alphavantagewrapper({
+  apiKey: '<your API key>',
+});
+
+const output = await q.stock.intraday('MSFT');
+```
+
+The output of the example will be the following (with `parse` mode set to `transform`):
+
+```js
+{
+   "description":"Daily Time Series with Splits and Dividend Events",
+   "symbol":"MSFT",
+   "lastRefreshed":"2019-07-12",
+   "timeZone":"US/Eastern",
+   "outputType":"Compact",
+   "timeSeries":{
+      "2019-07-12":{
+         "close":"138.9000",
+         "adjustedClose":"138.9000",
+         "high":"139.1300",
+         "low":"138.0099",
+         "open":"138.8500",
+         "volume":"18936832",
+         "dividendAmount":"0.0000",
+         "splitCoefficient":"1.0000"
+      }
+      // many others based on the interval value
+   }
+}
+```
 
 ### quote
 
