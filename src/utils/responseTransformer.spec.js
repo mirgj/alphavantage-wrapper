@@ -961,4 +961,54 @@ describe('# responseTransformer', () => {
       });
     });
   });
+
+  describe('## TIME_SERIES_INTRADAY', () => {
+    it('should transform the response into the expected format', async () => {
+      const response = {
+        'Meta Data': {
+          '1. Information':
+            'Intraday (5min) open, high, low, close prices and volume',
+          '2. Symbol': 'MSFT',
+          '3. Last Refreshed': '2019-07-12 16:00:00',
+          '4. Interval': '5min',
+          '5. Output Size': 'Compact',
+          '6. Time Zone': 'US/Eastern',
+        },
+        'Time Series (5min)': {
+          '2019-07-12 16:00:00': {
+            '1. open': '138.6800',
+            '2. high': '138.9800',
+            '3. low': '138.6800',
+            '4. close': '138.8900',
+            '5. volume': '1736475',
+          },
+        },
+      };
+      const res = await responseTransformer(
+        {
+          parse: 'transform',
+        },
+        response,
+        constants.TIME_SERIES_INTRADAY,
+      );
+
+      expect(res).toEqual({
+        description: 'Intraday (5min) open, high, low, close prices and volume',
+        symbol: 'MSFT',
+        interval: '5min',
+        lastRefreshed: '2019-07-12 16:00:00',
+        timeZone: 'US/Eastern',
+        outputType: 'Compact',
+        timeSeries: {
+          '2019-07-12 16:00:00': {
+            close: '138.8900',
+            high: '138.9800',
+            low: '138.6800',
+            open: '138.6800',
+            volume: '1736475',
+          },
+        },
+      });
+    });
+  });
 });

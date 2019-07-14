@@ -22,6 +22,7 @@ describe('# stock', () => {
     const fn = stock(config);
 
     expect(fn.quote).toEqual(expect.any(Function));
+    expect(fn.intraday).toEqual(expect.any(Function));
     // expect(fn.search).toEqual(expect.any(Function));
   });
 
@@ -45,6 +46,34 @@ describe('# stock', () => {
     expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.GLOBAL_QUOTE,
       symbol: 'MSFT',
+      datatype: 'csv',
+    });
+  });
+
+  it('should call the intraday function correctly with default parameters', async () => {
+    const fn = stock(config);
+    const result = await fn.intraday('MSFT');
+
+    expect(result).toEqual('an-output');
+    expect(requestCreator).toHaveBeenCalledWith(config, {
+      function: constants.TIME_SERIES_INTRADAY,
+      symbol: 'MSFT',
+      interval: '5min',
+      outputsize: 'compact',
+      datatype: 'json',
+    });
+  });
+
+  it('should call the intraday function correctly with custom parameters', async () => {
+    const fn = stock(config);
+    const result = await fn.intraday('MSFT', '1min', 'full', 'csv');
+
+    expect(result).toEqual('an-output');
+    expect(requestCreator).toHaveBeenCalledWith(config, {
+      function: constants.TIME_SERIES_INTRADAY,
+      symbol: 'MSFT',
+      interval: '1min',
+      outputsize: 'full',
       datatype: 'csv',
     });
   });

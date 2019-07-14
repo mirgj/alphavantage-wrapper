@@ -33,6 +33,20 @@ const execute = config => (
 };
 
 const stock = config => ({
+  intraday: (
+    symbol,
+    interval = '5min',
+    outputsize = 'compact',
+    dataType = 'json',
+  ) =>
+    execute(config)(
+      symbol,
+      interval,
+      outputsize,
+      null,
+      dataType,
+      constants.TIME_SERIES_INTRADAY,
+    ),
   quote: (symbol, dataType = 'json') =>
     execute(config)(symbol, null, null, null, dataType, constants.GLOBAL_QUOTE),
   // search: (keywords, dataType = 'json') =>
