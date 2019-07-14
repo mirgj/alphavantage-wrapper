@@ -1,6 +1,10 @@
 import validators from './index';
 
 describe('# Validators', () => {
+  it('should throw an exception if the type is not supported', () => {
+    expect(() => validators('invalid-value', 'invalid-type')).toThrow();
+  });
+
   describe('## digitalPhysicalCurrency', () => {
     it('should validate a correct value (Digital)', () => {
       const ex = validators('BTC', 'digitalPhysicalCurrency');
