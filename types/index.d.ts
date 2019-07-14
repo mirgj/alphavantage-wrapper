@@ -219,6 +219,10 @@ interface IStock {
     dataType?: DataTypeType,
   ): IAdjustedStockResult;
   monthly(symbol: string, dataType?: DataTypeType): IStockResult;
+  monthly_adjusted(
+    symbol: string,
+    dataType?: DataTypeType,
+  ): IAdjustedStockResult;
   quote(symbol: string, dataType?: DataTypeType): IStockQuoteResult;
 }
 
