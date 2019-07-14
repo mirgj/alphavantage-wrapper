@@ -267,6 +267,7 @@ This module provide functions related to the **stock** market. The following fun
 - `daily(symbol: string, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the daily stock value based on the given symbol
 - `daily_adjusted(symbol: string, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the daily stock value based on the given symbol including splits and dividend
 - `weekly(symbol: string, dataType?: DataTypeType)`: provides the weekly stock value based on the given symbol
+- `weekly_adjusted(symbol: string, dataType?: DataTypeType)`: provides the weekly stock value based on the given symbol including dividend
 - `monthly(symbol: string, dataType?: DataTypeType)`: provides the monthly stock value based on the given symbol
 - `quote(symbol: string, dataType?: DataTypeType)`: provides the quote rates for the given symbol/ticker
 - (more to add)
