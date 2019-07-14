@@ -1,0 +1,66 @@
+{
+  "validity": "Meta Data",
+  "propertyMappings": [
+    {
+      "from": "Meta Data|1. Information",
+      "to": "description"
+    },
+    {
+      "from": "Meta Data|2. Symbol",
+      "to": "symbol"
+    },
+    {
+      "from": "Meta Data|3. Last Refreshed",
+      "to": "lastRefreshed"
+    },
+    {
+      "from": "Meta Data|4. Time Zone",
+      "to": "timeZone"
+    },
+    {
+      "from": "Monthly Time Series|[dynamic]|1. open",
+      "to": "timeSeries|[dynamic]|open",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Monthly Time Series|[dynamic]|2. high",
+      "to": "timeSeries|[dynamic]|high",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Monthly Time Series|[dynamic]|3. low",
+      "to": "timeSeries|[dynamic]|low",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Monthly Time Series|[dynamic]|4. close",
+      "to": "timeSeries|[dynamic]|close",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    },
+    {
+      "from": "Monthly Time Series|[dynamic]|5. volume",
+      "to": "timeSeries|[dynamic]|volume",
+      "format": {
+        "keyIndex": 1,
+        "regex": "\\(([^)]+)\\)",
+        "group": 1
+      }
+    }
+  ]
+}

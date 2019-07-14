@@ -25,6 +25,7 @@ describe('# stock', () => {
     expect(fn.intraday).toEqual(expect.any(Function));
     expect(fn.daily).toEqual(expect.any(Function));
     expect(fn.weekly).toEqual(expect.any(Function));
+    expect(fn.monthly).toEqual(expect.any(Function));
     // expect(fn.search).toEqual(expect.any(Function));
   });
 
@@ -125,6 +126,30 @@ describe('# stock', () => {
     expect(result).toEqual('an-output');
     expect(requestCreator).toHaveBeenCalledWith(config, {
       function: constants.TIME_SERIES_WEEKLY,
+      symbol: 'MSFT',
+      datatype: 'csv',
+    });
+  });
+
+  it('should call the monthly function correctly with default parameters', async () => {
+    const fn = stock(config);
+    const result = await fn.monthly('MSFT');
+
+    expect(result).toEqual('an-output');
+    expect(requestCreator).toHaveBeenCalledWith(config, {
+      function: constants.TIME_SERIES_MONTHLY,
+      symbol: 'MSFT',
+      datatype: 'json',
+    });
+  });
+
+  it('should call the monthly function correctly with custom parameters', async () => {
+    const fn = stock(config);
+    const result = await fn.monthly('MSFT', 'csv');
+
+    expect(result).toEqual('an-output');
+    expect(requestCreator).toHaveBeenCalledWith(config, {
+      function: constants.TIME_SERIES_MONTHLY,
       symbol: 'MSFT',
       datatype: 'csv',
     });

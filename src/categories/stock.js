@@ -65,6 +65,15 @@ const stock = config => ({
       dataType,
       constants.TIME_SERIES_WEEKLY,
     ),
+  monthly: (symbol, dataType = 'json') =>
+    execute(config)(
+      symbol,
+      null,
+      null,
+      null,
+      dataType,
+      constants.TIME_SERIES_MONTHLY,
+    ),
   quote: (symbol, dataType = 'json') =>
     execute(config)(symbol, null, null, null, dataType, constants.GLOBAL_QUOTE),
   // search: (keywords, dataType = 'json') =>

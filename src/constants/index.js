@@ -11,6 +11,7 @@ export const GLOBAL_QUOTE = 'GLOBAL_QUOTE';
 export const TIME_SERIES_INTRADAY = 'TIME_SERIES_INTRADAY';
 export const TIME_SERIES_DAILY = 'TIME_SERIES_DAILY';
 export const TIME_SERIES_WEEKLY = 'TIME_SERIES_WEEKLY';
+export const TIME_SERIES_MONTHLY = 'TIME_SERIES_MONTHLY';
 export const SYMBOL_SEARCH = 'SYMBOL_SEARCH';
 export const DYNAMIC = '[dynamic]';
 export const DYNAMIC_FORMAT = '[dynamicFormat]';

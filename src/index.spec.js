@@ -15,6 +15,7 @@ describe('# index', () => {
       intraday: expect.any(Function),
       daily: expect.any(Function),
       weekly: expect.any(Function),
+      monthly: expect.any(Function),
       // search: expect.any(Function),
     });
     expect(res.forex).toEqual({
