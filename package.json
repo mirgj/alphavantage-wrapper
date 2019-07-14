@@ -1,7 +1,7 @@
 {
   "name": "alphavantage-wrapper",
   "version": "0.6.3",
-  "description": "Wrapper around alphavantage API",
+  "description": "Wrapper around Alpha Vantage API with friendly interface",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "scripts": {
@@ -17,6 +17,8 @@
   },
   "keywords": [
     "alphavantage",
+    "alpha",
+    "vantage",
     "API",
     "wrapper",
     "stocks",
