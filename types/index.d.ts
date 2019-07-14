@@ -43,7 +43,9 @@ interface IMarketValue {
   close: string | number;
 }
 
-interface ICyptoMarketValue extends IMarketValue {
+interface IStockMarketValue extends IMarketValue, IVolume {}
+
+interface ICyptoMarketValue extends IMarketValue, IVolume {
   marketCap: string | number;
 }
 
@@ -55,12 +57,16 @@ interface IVolume {
   volume: string | number;
 }
 
-type ICyptoTimeSeries = IVolume & {
+interface ICyptoTimeSeries {
   [key: string]: ICryptoTimeType;
-};
+}
 
 interface IForexTimeSeries {
   [key: string]: IMarketValue;
+}
+
+interface IStockTimeSeries {
+  [key: string]: IStockMarketValue;
 }
 
 interface IExchangeRateResult {
@@ -88,6 +94,16 @@ interface IForexResult {
   lastRefreshed: string | Date;
   timeZone: string;
   timeSeries: IForexTimeSeries;
+}
+
+interface IStockResut {
+  description: string;
+  symbol: string;
+  interval: IntervalType;
+  outputType: OutputSizeType;
+  lastRefreshed: string | Date;
+  timeZone: string;
+  timeSeries: IStockTimeSeries;
 }
 
 interface ISectorPerformance {
@@ -164,6 +180,12 @@ interface IStockQuoteResult {
 }
 
 interface IStock {
+  intraday(
+    symbol: string,
+    interval?: IntervalType,
+    outputSize?: OutputSizeType,
+    dataType?: DataTypeType,
+  ): IStockResut;
   quote(symbol: string, dataType?: DataTypeType): IStockQuoteResult;
 }
 
