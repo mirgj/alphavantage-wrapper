@@ -74,6 +74,15 @@ const stock = config => ({
       dataType,
       constants.TIME_SERIES_WEEKLY,
     ),
+  weekly_adjusted: (symbol, dataType = 'json') =>
+    execute(config)(
+      symbol,
+      null,
+      null,
+      null,
+      dataType,
+      constants.TIME_SERIES_WEEKLY_ADJUSTED,
+    ),
   monthly: (symbol, dataType = 'json') =>
     execute(config)(
       symbol,
