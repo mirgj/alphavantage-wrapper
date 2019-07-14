@@ -264,6 +264,7 @@ timestamp,open,high,low,close
 This module provide functions related to the **stock** market. The following function are exposed through the module:
 
 - `intraday(symbol: string, interval?: IntervalType, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the intraday stock value based on the given symbol
+- `daily(symbol: string, outputSize?: OutputSizeType, dataType?: DataTypeType)`: provides the daily stock value based on the given symbol
 - `quote(symbol: string, dataType?: DataTypeType)`: provides the quote rates for the given symbol/ticker
 - (more to add)
 
