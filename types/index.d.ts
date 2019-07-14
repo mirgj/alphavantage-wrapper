@@ -186,6 +186,11 @@ interface IStock {
     outputSize?: OutputSizeType,
     dataType?: DataTypeType,
   ): IStockResut;
+  daily(
+    symbol: string,
+    outputSize?: OutputSizeType,
+    dataType?: DataTypeType,
+  ): IStockResut;
   quote(symbol: string, dataType?: DataTypeType): IStockQuoteResult;
 }
 
