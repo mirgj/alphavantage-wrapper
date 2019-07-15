@@ -2,6 +2,12 @@
 
 This small library wraps around the [Alpha Vantage APIs](https://www.alphavantage.co/) with an easy and cleaner interface. The following documentation is related to the wrapper with recalls to the [official documentation](https://www.alphavantage.co/documentation/).
 
+## Install
+
+```
+npm install alphavantage-wrapper
+```
+
 ## Initialisation
 
 ```js
