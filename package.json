@@ -74,6 +74,7 @@
     }
   },
   "dependencies": {
+    "@babel/runtime": "^7.5.4",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   }
