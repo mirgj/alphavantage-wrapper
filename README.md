@@ -8,6 +8,12 @@ This small library wraps around the [Alpha Vantage APIs](https://www.alphavantag
 npm install alphavantage-wrapper
 ```
 
+or via Github package
+
+```
+npm install @mirgj/alphavantage-wrapper
+```
+
 ## Initialisation
 
 ```js

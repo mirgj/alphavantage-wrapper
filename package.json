@@ -1,5 +1,5 @@
 {
-  "name": "alphavantage-wrapper",
+  "name": "@mirgj/alphavantage-wrapper",
   "version": "0.7.2",
   "description": "Wrapper around Alpha Vantage API with friendly interface",
   "main": "lib/index.js",
@@ -10,6 +10,9 @@
     "build": "rm -rf lib && ./node_modules/.bin/babel src --out-dir lib --copy-files && del lib/**/*.spec.js lib/*.spec.js",
     "prepare": "npm run build",
     "test": "jest"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "repository": {
     "type": "git",
