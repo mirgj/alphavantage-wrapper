@@ -1,6 +1,6 @@
 {
   "name": "@mirgj/alphavantage-wrapper",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Wrapper around Alpha Vantage API with friendly interface",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
